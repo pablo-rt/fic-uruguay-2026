@@ -1,17 +1,43 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="FIC Uruguay 2026 | Inicio">
+	<main>
+		<section class="relative h-screen flex items-center justify-center overflow-hidden">
+			<div class="absolute inset-0 z-0">
+				<div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#0A0A0A] z-10"></div>
+				<img 
+					src="https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?auto=format&fit=crop&q=80" 
+					class="w-full h-full object-cover opacity-40 scale-105 animate-[pulse_8s_infinite]"
+					alt="Circo"
+				/>
+			</div>
+
+			<div class="relative z-20 text-center px-4">
+				<h1 class="text-6xl md:text-[10rem] font-black uppercase leading-[0.8] tracking-tighter">
+					FIC <span class="text-[#E63946] italic">2026</span>
+				</h1>
+				<p class="text-lg md:text-2xl tracking-[0.3em] uppercase opacity-70 mt-6 font-light">
+					Festival Internacional de Circo
+				</p>
+			</div>
+		</section>
+
+		<section class="max-w-6xl mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-3 gap-6">
+			<div class="md:col-span-2 bg-zinc-900/50 border border-zinc-800 p-10 rounded-[2.5rem] hover:border-[#E63946]/50 transition-all group cursor-pointer">
+				<span class="text-[#E63946] font-bold tracking-widest text-sm uppercase">Próximamente</span>
+				<h2 class="text-4xl md:text-5xl font-bold mt-4 mb-4 group-hover:translate-x-2 transition-transform">Convocatorias</h2>
+				<p class="text-zinc-400 text-lg">Llamado abierto para compañías y artistas independientes.</p>
+			</div>
+			
+			<div class="bg-[#E63946] p-10 rounded-[2.5rem] flex flex-col justify-between group overflow-hidden relative">
+				<div class="relative z-10">
+					<h2 class="text-3xl font-bold italic leading-tight">5ta <br/>Edición</h2>
+				</div>
+				<p class="relative z-10 text-sm font-bold uppercase tracking-wider">Montevideo, UY</p>
+				<div class="absolute -bottom-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl group-hover:scale-150 transition-transform"></div>
+			</div>
+		</section>
+	</main>
+</Layout>

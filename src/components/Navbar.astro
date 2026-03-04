@@ -1,0 +1,20 @@
+---
+// src/components/Navbar.astro
+---
+<nav class="fixed top-0 left-0 w-full z-50 px-6 py-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center bg-zinc-900/80 backdrop-blur-xl border border-white/10 px-8 py-4 rounded-2xl">
+        <a href="/" class="text-2xl font-black tracking-tighter hover:scale-105 transition-transform">
+            FIC<span class="text-[#E63946]">.</span>
+        </a>
+
+        <div class="hidden md:flex gap-8 text-[10px] uppercase tracking-[0.2em] font-bold">
+            <a href="#convocatorias" class="hover:text-[#E63946] transition-colors">Convocatorias</a>
+            <a href="#espectaculos" class="hover:text-[#E63946] transition-colors">Espectáculos</a>
+            <a href="#talleres" class="hover:text-[#E63946] transition-colors">Talleres</a>
+        </div>
+
+        <a href="#contacto" class="bg-white text-black px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[#E63946] hover:text-white transition-all">
+            Contacto
+        </a>
+    </div>
+</nav>
