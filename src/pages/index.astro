@@ -131,46 +131,46 @@ import Card from '../components/Card.astro';
 		title="Lo que Dicen los Artistas"
 		subtitle="Testimonios"
 		description="Voces de la comunidad circense"
-		dark={true}
+		dark={false}
 	>
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-			<div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
+			<div class="bg-white/10 border border-[#D4A574]/30 p-8 rounded-2xl">
 				<div class="flex items-center gap-4 mb-6">
-					<div class="w-12 h-12 rounded-full bg-[#E63946] flex items-center justify-center font-bold">
+					<div class="w-12 h-12 rounded-full bg-[#8B3A3A] flex items-center justify-center font-bold text-white">
 						MC
 					</div>
 					<div>
 						<h4 class="font-bold">María Cortés</h4>
-						<p class="text-sm text-zinc-400">Acróbata, Argentina</p>
+						<p class="text-sm text-zinc-300">Acróbata, Argentina</p>
 					</div>
 				</div>
-				<p class="text-zinc-300 italic">"FIC es el lugar donde el circo latinoamericano brilla. Una experiencia única que no me puedo perder cada año."</p>
+				<p class="text-zinc-200 italic">"FIC es el lugar donde el circo latinoamericano brilla. Una experiencia única que no me puedo perder cada año."</p>
 			</div>
 
-			<div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
+			<div class="bg-white/10 border border-[#D4A574]/30 p-8 rounded-2xl">
 				<div class="flex items-center gap-4 mb-6">
-					<div class="w-12 h-12 rounded-full bg-[#E63946] flex items-center justify-center font-bold">
+					<div class="w-12 h-12 rounded-full bg-[#8B3A3A] flex items-center justify-center font-bold text-white">
 						JL
 					</div>
 					<div>
 						<h4 class="font-bold">Juan López</h4>
-						<p class="text-sm text-zinc-400">Payaso, Uruguay</p>
+						<p class="text-sm text-zinc-300">Payaso, Uruguay</p>
 					</div>
 				</div>
-				<p class="text-zinc-300 italic">"El festival nos da la oportunidad de mostrar nuestro trabajo a una audiencia apasionada y conectar con otros artistas."</p>
+				<p class="text-zinc-200 italic">"El festival nos da la oportunidad de mostrar nuestro trabajo a una audiencia apasionada y conectar con otros artistas."</p>
 			</div>
 
-			<div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
+			<div class="bg-white/10 border border-[#D4A574]/30 p-8 rounded-2xl">
 				<div class="flex items-center gap-4 mb-6">
-					<div class="w-12 h-12 rounded-full bg-[#E63946] flex items-center justify-center font-bold">
+					<div class="w-12 h-12 rounded-full bg-[#8B3A3A] flex items-center justify center font-bold text-white">
 						SP
 					</div>
 					<div>
 						<h4 class="font-bold">Sofia Pérez</h4>
-						<p class="text-sm text-zinc-400">Trapecista, Brasil</p>
+						<p class="text-sm text-zinc-300">Trapecista, Brasil</p>
 					</div>
 				</div>
-				<p class="text-zinc-300 italic">"Montevideo se transforma durante FIC. La energía, la pasión y el apoyo del público es incomparable."</p>
+				<p class="text-zinc-200 italic">"Montevideo se transforma durante FIC. La energía, la pasión y el apoyo del público es incomparable."</p>
 			</div>
 		</div>
 	</Section>
@@ -187,17 +187,17 @@ import Card from '../components/Card.astro';
 				<input 
 					type="email" 
 					placeholder="Tu correo electrónico"
-					class="flex-1 px-6 py-3 rounded-lg bg-zinc-900 border border-zinc-800 focus:border-[#E63946] focus:outline-none transition-colors text-white placeholder-zinc-500"
+					class="flex-1 px-6 py-3 rounded-lg bg-white/20 border border-[#D4A574]/50 focus:border-[#8B3A3A] focus:outline-none transition-colors text-white placeholder-zinc-300"
 					required
 				/>
 				<button 
 					type="submit"
-					class="px-8 py-3 bg-[#E63946] text-white font-bold uppercase tracking-widest rounded-lg hover:bg-[#d62828] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(230,57,70,0.5)]"
+					class="px-8 py-3 bg-[#8B3A3A] text-white font-bold uppercase tracking-widest rounded-lg hover:bg-[#D4A574] hover:text-[#4A7C8C] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(139,58,58,0.5)]"
 				>
 					Suscribirse
 				</button>
 			</form>
-			<p class="text-center text-zinc-400 text-sm mt-4">
+			<p class="text-center text-zinc-300 text-sm mt-4">
 				No compartimos tu email. Puedes desuscribirte en cualquier momento.
 			</p>
 		</div>
@@ -208,18 +208,18 @@ import Card from '../components/Card.astro';
 		id="cta"
 		title="¿Listo para el Circo?"
 		subtitle="Únete a Nosotros"
-		dark={true}
+		dark={false}
 	>
 		<div class="flex flex-col sm:flex-row gap-6 justify-center">
 			<a 
 				href="/convocatorias"
-				class="px-8 py-4 bg-[#E63946] text-white font-bold uppercase tracking-widest rounded-lg hover:bg-[#d62828] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(230,57,70,0.5)] text-center"
+				class="px-8 py-4 bg-[#8B3A3A] text-white font-bold uppercase tracking-widest rounded-lg hover:bg-[#D4A574] hover:text-[#4A7C8C] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(139,58,58,0.5)] text-center"
 			>
 				Participa como Artista
 			</a>
 			<a 
 				href="/contacto"
-				class="px-8 py-4 border-2 border-[#E63946] text-[#E63946] font-bold uppercase tracking-widest rounded-lg hover:bg-[#E63946] hover:text-white transition-all duration-300 text-center"
+				class="px-8 py-4 border-2 border-[#8B3A3A] text-[#8B3A3A] font-bold uppercase tracking-widest rounded-lg hover:bg-[#8B3A3A] hover:text-white transition-all duration-300 text-center"
 			>
 				Contacta con Nosotros
 			</a>
