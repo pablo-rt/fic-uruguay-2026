@@ -1,20 +1,36 @@
 ---
 // src/components/Navbar.astro
 ---
-<nav class="fixed top-0 left-0 w-full z-50 px-6 py-6">
-    <div class="max-w-7xl mx-auto flex justify-between items-center bg-zinc-900/80 backdrop-blur-xl border border-white/10 px-8 py-4 rounded-2xl">
-        <a href="/" class="text-2xl font-black tracking-tighter hover:scale-105 transition-transform">
+
+<nav class="fixed top-0 left-0 w-full z-50 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-zinc-800">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+        <!-- Logo -->
+        <a href="/" class="text-2xl font-black tracking-tighter hover:text-[#E63946] transition-colors duration-300">
             FIC<span class="text-[#E63946]">.</span>
         </a>
 
-        <div class="hidden md:flex gap-8 text-[10px] uppercase tracking-[0.2em] font-bold">
-            <a href="#convocatorias" class="hover:text-[#E63946] transition-colors">Convocatorias</a>
-            <a href="#espectaculos" class="hover:text-[#E63946] transition-colors">Espectáculos</a>
-            <a href="#talleres" class="hover:text-[#E63946] transition-colors">Talleres</a>
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex gap-12 text-sm uppercase tracking-[0.15em] font-semibold">
+            <a href="/convocatorias" class="text-zinc-300 hover:text-[#E63946] transition-colors duration-300 relative group">
+                Convocatorias
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E63946] group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a href="/espectaculos" class="text-zinc-300 hover:text-[#E63946] transition-colors duration-300 relative group">
+                Espectáculos
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E63946] group-hover:w-full transition-all duration-300"></span>
+            </a>
+            <a href="/talleres" class="text-zinc-300 hover:text-[#E63946] transition-colors duration-300 relative group">
+                Talleres
+                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E63946] group-hover:w-full transition-all duration-300"></span>
+            </a>
         </div>
 
-        <a href="#contacto" class="bg-white text-black px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-[#E63946] hover:text-white transition-all">
+        <!-- CTA Button -->
+        <a href="/contacto" class="bg-[#E63946] text-white px-6 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-[#d62828] transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(230,57,70,0.4)]">
             Contacto
         </a>
     </div>
 </nav>
+
+<!-- Spacer para que el contenido no se superponga con el navbar fijo -->
+<div class="h-16"></div>

@@ -1,0 +1,73 @@
+---
+// src/components/Footer.astro
+---
+
+<footer class="bg-zinc-950 border-t border-zinc-800 mt-20">
+    <div class="max-w-7xl mx-auto px-6 py-16">
+        <!-- Grid principal -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+            <!-- Columna 1: Logo y descripción -->
+            <div>
+                <h3 class="text-2xl font-black mb-4">
+                    FIC<span class="text-[#E63946]">.</span>
+                </h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">
+                    Festival Internacional de Circo. Celebrando el arte circense en Uruguay desde 2002.
+                </p>
+            </div>
+
+            <!-- Columna 2: Enlaces rápidos -->
+            <div>
+                <h4 class="text-sm font-bold uppercase tracking-widest mb-6 text-white">Navegación</h4>
+                <ul class="space-y-3">
+                    <li><a href="/" class="text-zinc-400 hover:text-[#E63946] transition-colors text-sm">Inicio</a></li>
+                    <li><a href="/convocatorias" class="text-zinc-400 hover:text-[#E63946] transition-colors text-sm">Convocatorias</a></li>
+                    <li><a href="/espectaculos" class="text-zinc-400 hover:text-[#E63946] transition-colors text-sm">Espectáculos</a></li>
+                    <li><a href="/talleres" class="text-zinc-400 hover:text-[#E63946] transition-colors text-sm">Talleres</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 3: Información -->
+            <div>
+                <h4 class="text-sm font-bold uppercase tracking-widest mb-6 text-white">Información</h4>
+                <ul class="space-y-3">
+                    <li><a href="/contacto" class="text-zinc-400 hover:text-[#E63946] transition-colors text-sm">Contacto</a></li>
+                    <li><a href="#" class="text-zinc-400 hover:text-[#E63946] transition-colors text-sm">Prensa</a></li>
+                    <li><a href="#" class="text-zinc-400 hover:text-[#E63946] transition-colors text-sm">Privacidad</a></li>
+                    <li><a href="#" class="text-zinc-400 hover:text-[#E63946] transition-colors text-sm">Términos</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna 4: Redes sociales -->
+            <div>
+                <h4 class="text-sm font-bold uppercase tracking-widest mb-6 text-white">Síguenos</h4>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-lg bg-zinc-800 hover:bg-[#E63946] flex items-center justify-center transition-colors text-sm font-bold">
+                        f
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-lg bg-zinc-800 hover:bg-[#E63946] flex items-center justify-center transition-colors text-sm font-bold">
+                        𝕏
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-lg bg-zinc-800 hover:bg-[#E63946] flex items-center justify-center transition-colors text-sm font-bold">
+                        📷
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-lg bg-zinc-800 hover:bg-[#E63946] flex items-center justify-center transition-colors text-sm font-bold">
+                        ▶
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-zinc-800 pt-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-zinc-500 text-sm">
+                    &copy; 2026 Festival Internacional de Circo. Todos los derechos reservados.
+                </p>
+                <p class="text-zinc-500 text-sm">
+                    Montevideo, Uruguay
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
