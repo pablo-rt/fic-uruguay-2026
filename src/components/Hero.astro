@@ -22,7 +22,7 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative h-screen flex items-center justify-center overflow-hidden">
+<section class="relative min-h-[500px] md:min-h-[600px] lg:min-h-[700px] flex items-center justify-center overflow-hidden py-12 md:py-16">
     <!-- Background -->
     <div class="absolute inset-0 z-0">
         {backgroundGradient && (
@@ -38,17 +38,17 @@ const {
     <!-- Content -->
     <div class="relative z-20 text-center px-4 max-w-4xl">
         {subtitle && (
-            <p class="text-sm md:text-base tracking-[0.3em] uppercase opacity-70 mb-4 font-light text-[#E63946]">
+            <p class="text-xs md:text-sm tracking-[0.3em] uppercase opacity-70 mb-3 md:mb-4 font-light text-[#E63946]">
                 {subtitle}
             </p>
         )}
         
-        <h1 class="text-5xl md:text-7xl lg:text-8xl font-black uppercase leading-[0.9] tracking-tighter mb-6">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.1] tracking-tighter mb-4 md:mb-6">
             {title}
         </h1>
         
         {description && (
-            <p class="text-lg md:text-xl tracking-wide opacity-80 mb-8 font-light">
+            <p class="text-base md:text-lg tracking-wide opacity-80 mb-6 md:mb-8 font-light">
                 {description}
             </p>
         )}
@@ -56,7 +56,7 @@ const {
         {cta && (
             <a 
                 href={cta.href}
-                class="inline-block bg-[#E63946] text-white px-8 py-3 rounded-lg font-bold uppercase tracking-widest hover:bg-[#d62828] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(230,57,70,0.5)]"
+                class="inline-block bg-[#E63946] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-lg font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-[#d62828] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(230,57,70,0.5)]"
             >
                 {cta.text}
             </a>
