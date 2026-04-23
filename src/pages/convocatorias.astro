@@ -14,117 +14,6 @@ import Card from '../components/Card.astro';
 		backgroundImage="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&q=80"
 	/>
 
-	<!-- Información General -->
-	<Section 
-		id="info"
-		title="Información General"
-		subtitle="Detalles de la Convocatoria"
-		description="Todo lo que necesitas saber para participar"
-	>
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-			<div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
-				<h3 class="text-2xl font-bold mb-4 text-[#E63946]">📅 Fechas Importantes</h3>
-				<ul class="space-y-3 text-zinc-300">
-					<li><strong>Apertura:</strong> 1 de Abril 2026</li>
-					<li><strong>Cierre:</strong> 30 de Junio 2026</li>
-					<li><strong>Notificación:</strong> 31 de Agosto 2026</li>
-					<li><strong>Festival:</strong> 15-30 de Octubre 2026</li>
-				</ul>
-			</div>
-
-			<div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
-				<h3 class="text-2xl font-bold mb-4 text-[#E63946]">🎪 Categorías</h3>
-				<ul class="space-y-3 text-zinc-300">
-					<li>✓ Circo Tradicional</li>
-					<li>✓ Circo Contemporáneo</li>
-					<li>✓ Teatro Físico</li>
-					<li>✓ Performance Experimental</li>
-				</ul>
-			</div>
-
-			<div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
-				<h3 class="text-2xl font-bold mb-4 text-[#E63946]">💰 Beneficios</h3>
-				<ul class="space-y-3 text-zinc-300">
-					<li>✓ Escenario profesional</li>
-					<li>✓ Público de 5,000+ personas</li>
-					<li>✓ Cobertura mediática</li>
-					<li>✓ Networking internacional</li>
-				</ul>
-			</div>
-
-			<div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
-				<h3 class="text-2xl font-bold mb-4 text-[#E63946]">📋 Requisitos</h3>
-				<ul class="space-y-3 text-zinc-300">
-					<li>✓ Experiencia mínima 2 años</li>
-					<li>✓ Video de demostración</li>
-					<li>✓ Descripción del acto</li>
-					<li>✓ Datos de contacto</li>
-				</ul>
-			</div>
-		</div>
-	</Section>
-
-	<!-- Proceso de Selección -->
-	<Section 
-		id="proceso"
-		title="Proceso de Selección"
-		subtitle="Cómo Funciona"
-		description="Conoce los pasos para ser seleccionado"
-		dark={true}
-	>
-		<div class="max-w-4xl mx-auto">
-			<div class="space-y-8">
-				<div class="flex gap-6">
-					<div class="flex-shrink-0">
-						<div class="flex items-center justify-center h-12 w-12 rounded-md bg-[#E63946] text-white font-bold text-lg">
-							1
-						</div>
-					</div>
-					<div>
-						<h3 class="text-xl font-bold mb-2">Envía tu Solicitud</h3>
-						<p class="text-zinc-400">Completa el formulario en línea con toda la información requerida y adjunta tu video de demostración.</p>
-					</div>
-				</div>
-
-				<div class="flex gap-6">
-					<div class="flex-shrink-0">
-						<div class="flex items-center justify-center h-12 w-12 rounded-md bg-[#E63946] text-white font-bold text-lg">
-							2
-						</div>
-					</div>
-					<div>
-						<h3 class="text-xl font-bold mb-2">Revisión Inicial</h3>
-						<p class="text-zinc-400">Nuestro equipo revisa que cumplas con los requisitos básicos y que el material sea de calidad.</p>
-					</div>
-				</div>
-
-				<div class="flex gap-6">
-					<div class="flex-shrink-0">
-						<div class="flex items-center justify-center h-12 w-12 rounded-md bg-[#E63946] text-white font-bold text-lg">
-							3
-						</div>
-					</div>
-					<div>
-						<h3 class="text-xl font-bold mb-2">Evaluación de Jurado</h3>
-						<p class="text-zinc-400">Un jurado internacional de expertos en circo evalúa tu propuesta artística.</p>
-					</div>
-				</div>
-
-				<div class="flex gap-6">
-					<div class="flex-shrink-0">
-						<div class="flex items-center justify-center h-12 w-12 rounded-md bg-[#E63946] text-white font-bold text-lg">
-							4
-						</div>
-					</div>
-					<div>
-						<h3 class="text-xl font-bold mb-2">Notificación</h3>
-						<p class="text-zinc-400">Recibirás una notificación con el resultado y los detalles de tu participación.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</Section>
-
 	<!-- Preguntas Frecuentes -->
 	<Section 
 		id="faq"
@@ -136,7 +25,7 @@ import Card from '../components/Card.astro';
 			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
 				<summary class="flex justify-between items-center font-bold text-lg">
 					¿Cuál es la duración máxima del acto?
-					<span class="text-[#E63946] group-open:rotate-180 transition-transform">▼</span>
+					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
 				</summary>
 				<p class="text-zinc-400 mt-4">La duración máxima es de 30 minutos. Los actos más cortos también son bienvenidos.</p>
 			</details>
@@ -144,7 +33,7 @@ import Card from '../components/Card.astro';
 			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
 				<summary class="flex justify-between items-center font-bold text-lg">
 					¿Hay costo de inscripción?
-					<span class="text-[#E63946] group-open:rotate-180 transition-transform">▼</span>
+					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
 				</summary>
 				<p class="text-zinc-400 mt-4">No, la inscripción es completamente gratuita. Solo necesitas completar el formulario en línea.</p>
 			</details>
@@ -152,7 +41,7 @@ import Card from '../components/Card.astro';
 			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
 				<summary class="flex justify-between items-center font-bold text-lg">
 					¿Qué formato debe tener el video?
-					<span class="text-[#E63946] group-open:rotate-180 transition-transform">▼</span>
+					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
 				</summary>
 				<p class="text-zinc-400 mt-4">Aceptamos MP4, MOV, AVI y WebM. El video debe tener una duración mínima de 3 minutos y máxima de 10 minutos.</p>
 			</details>
@@ -160,7 +49,7 @@ import Card from '../components/Card.astro';
 			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
 				<summary class="flex justify-between items-center font-bold text-lg">
 					¿Puedo participar si soy internacional?
-					<span class="text-[#E63946] group-open:rotate-180 transition-transform">▼</span>
+					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
 				</summary>
 				<p class="text-zinc-400 mt-4">¡Por supuesto! Aceptamos artistas de todo el mundo. Ofrecemos apoyo con visas y alojamiento.</p>
 			</details>
@@ -168,7 +57,7 @@ import Card from '../components/Card.astro';
 			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
 				<summary class="flex justify-between items-center font-bold text-lg">
 					¿Hay apoyo económico para artistas?
-					<span class="text-[#E63946] group-open:rotate-180 transition-transform">▼</span>
+					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
 				</summary>
 				<p class="text-zinc-400 mt-4">Sí, ofrecemos becas parciales para artistas de países en desarrollo. Consulta los términos en el formulario.</p>
 			</details>
@@ -185,13 +74,13 @@ import Card from '../components/Card.astro';
 		<div class="flex flex-col sm:flex-row gap-6 justify-center">
 			<a 
 				href="#"
-				class="px-8 py-4 bg-[#E63946] text-white font-bold uppercase tracking-widest rounded-lg hover:bg-[#d62828] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(230,57,70,0.5)] text-center"
+				class="px-8 py-4 bg-[#8B3A3A] text-white font-bold uppercase tracking-widest rounded-lg hover:bg-[#6B2A2A] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(139,58,58,0.5)] text-center"
 			>
 				Enviar Solicitud
 			</a>
 			<a 
 				href="/contacto"
-				class="px-8 py-4 border-2 border-[#E63946] text-[#E63946] font-bold uppercase tracking-widest rounded-lg hover:bg-[#E63946] hover:text-white transition-all duration-300 text-center"
+				class="px-8 py-4 border-2 border-[#8B3A3A] text-[#8B3A3A] font-bold uppercase tracking-widest rounded-lg hover:bg-[#8B3A3A] hover:text-white transition-all duration-300 text-center"
 			>
 				Más Información
 			</a>
