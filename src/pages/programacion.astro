@@ -1,0 +1,395 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+
+const espectaculos = [
+  {
+    titulo: "Vuelo Sin Red",
+    compania: "Cía. Vértice",
+    venue: "Teatro Solís",
+    fechas: [15, 16, 17],
+    imagen: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    titulo: "Gravedad Inversa",
+    compania: "Colectivo Aéreo",
+    venue: "Espacio Multifuncional",
+    fechas: [15, 18, 22],
+    imagen: "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    titulo: "Equilibrio",
+    compania: "Duo Akimbo",
+    venue: "Sala Verdi",
+    fechas: [16, 17],
+    imagen: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    titulo: "Fuego y Sombra",
+    compania: "Trupe Ignición",
+    venue: "Anfiteatro Parque Rodó",
+    fechas: [19, 20, 21],
+    imagen: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    titulo: "El Gran Desfile",
+    compania: "FIC Compañía Estable",
+    venue: "Rambla Sur",
+    fechas: [20],
+    imagen: "https://images.unsplash.com/photo-1525026198548-4baa812f1183?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    titulo: "Acrobacia Contemporánea",
+    compania: "Colectivo Eje",
+    venue: "Teatro Circular",
+    fechas: [21, 22, 23, 24],
+    imagen: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    titulo: "Malabares del Fin del Mundo",
+    compania: "Los Tres Puntos",
+    venue: "Centro Cultural Barrio Sur",
+    fechas: [22, 23],
+    imagen: "https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    titulo: "Circo de Cámara",
+    compania: "Petit Ensemble",
+    venue: "Sala Zitarrosa",
+    fechas: [23, 24, 25],
+    imagen: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=800",
+  },
+  {
+    titulo: "Alta Tensión",
+    compania: "Cuerda Floja Colectivo",
+    venue: "Teatro Solís",
+    fechas: [24, 25],
+    imagen: "https://images.unsplash.com/photo-1530685932526-48ec92998eaa?auto=format&fit=crop&q=80&w=800",
+  },
+];
+
+// Días de agosto que tienen al menos un espectáculo
+const daysWithShows = new Set(espectaculos.flatMap(e => e.fechas));
+
+// Venues únicos ordenados
+const venues = [...new Set(espectaculos.map(e => e.venue))].sort();
+
+// Calendario agosto 2026
+// 1 agosto 2026 = sábado → en grilla Lu-Do: offset de 5 celdas vacías
+const CALENDAR_OFFSET = 5;
+const DAYS_IN_AUGUST = 31;
+const calendarCells: (number | null)[] = [];
+for (let i = 0; i < CALENDAR_OFFSET; i++) calendarCells.push(null);
+for (let d = 1; d <= DAYS_IN_AUGUST; d++) calendarCells.push(d);
+while (calendarCells.length % 7 !== 0) calendarCells.push(null);
+---
+
+<Layout title="Programación | FIC Uruguay 2026">
+  <Hero
+    title="Programación"
+    subtitle="FIC Uruguay 2026"
+    description="Explorá la agenda completa del festival. Espectáculos, compañías y fechas para que no te pierdas nada."
+    backgroundImage="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80"
+  />
+
+  <Section
+    id="espectaculos"
+    subtitle="Agenda Completa"
+    title="Espectáculos"
+    description="15 al 25 de agosto de 2026 · Montevideo, Uruguay"
+  >
+
+    <!-- ── FILTROS ───────────────────────────────────────────── -->
+    <div class="mb-12 flex flex-col lg:flex-row gap-4 items-start">
+
+      <!-- Calendario (colapsable) -->
+      <div class="w-full lg:w-72">
+        <button
+          id="toggle-fecha"
+          class="w-full flex justify-between items-center px-5 py-3 bg-[#1a3a45] border border-[#D4A574]/20 rounded-2xl text-left hover:border-[#D4A574]/50 transition-all duration-200 group"
+          aria-expanded="false"
+        >
+          <span class="text-xs uppercase tracking-widest text-[#D4A574] font-bold">Filtrar por fecha</span>
+          <svg id="arrow-fecha" class="w-4 h-4 text-zinc-400 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="panel-fecha" class="hidden mt-2 bg-[#1a3a45] border border-[#D4A574]/20 rounded-2xl p-5">
+          <p class="text-center text-sm font-black uppercase tracking-widest text-white mb-4">Agosto 2026</p>
+          <div class="grid grid-cols-7 mb-1">
+            {['Lu','Ma','Mi','Ju','Vi','Sa','Do'].map(d => (
+              <div class="text-center text-zinc-500 text-xs font-semibold py-1">{d}</div>
+            ))}
+          </div>
+          <div class="grid grid-cols-7 gap-y-1">
+            {calendarCells.map(day => (
+              day === null
+                ? <div />
+                : daysWithShows.has(day)
+                  ? (
+                    <button
+                      data-day={day}
+                      class="calendar-day w-8 h-8 mx-auto rounded-full text-sm font-bold text-white hover:bg-[#8B3A3A] transition-all duration-200 cursor-pointer"
+                    >
+                      {day}
+                    </button>
+                  )
+                  : (
+                    <div class="w-8 h-8 mx-auto rounded-full text-sm text-zinc-600 flex items-center justify-center cursor-not-allowed select-none">
+                      {day}
+                    </div>
+                  )
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Venue (colapsable) -->
+      <div class="flex-1 w-full">
+        <button
+          id="toggle-venue"
+          class="w-full flex justify-between items-center px-5 py-3 bg-[#1a3a45] border border-[#D4A574]/20 rounded-2xl text-left hover:border-[#D4A574]/50 transition-all duration-200"
+          aria-expanded="false"
+        >
+          <span class="text-xs uppercase tracking-widest text-[#D4A574] font-bold">Filtrar por venue</span>
+          <svg id="arrow-venue" class="w-4 h-4 text-zinc-400 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div id="panel-venue" class="hidden mt-2 bg-[#1a3a45] border border-[#D4A574]/20 rounded-2xl p-5">
+          <div class="flex flex-wrap gap-2">
+            {venues.map(venue => (
+              <button
+                data-venue-filter={venue}
+                class="venue-btn px-4 py-2 rounded-full text-sm font-semibold border border-zinc-600 text-zinc-300 hover:border-[#D4A574] hover:text-[#D4A574] transition-all duration-200 cursor-pointer"
+              >
+                {venue}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Estado de filtros activos + limpiar -->
+    <div id="filter-status" class="mb-8 hidden items-center gap-4">
+      <p class="text-zinc-400 text-sm">
+        Mostrando <span id="result-count" class="text-white font-bold">{espectaculos.length}</span> espectáculo(s)
+      </p>
+      <button
+        id="clear-filters"
+        class="text-xs uppercase tracking-widest font-bold text-[#8B3A3A] hover:text-[#D4A574] transition-colors duration-200 underline underline-offset-4"
+      >
+        Limpiar filtros
+      </button>
+    </div>
+    <!-- ── FIN FILTROS ────────────────────────────────────────── -->
+
+    <!-- Grilla de tarjetas -->
+    <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {espectaculos.map((show) => (
+        <article
+          data-card
+          data-fechas={show.fechas.join(',')}
+          data-venue={show.venue}
+          class="bg-[#1a3a45] border border-[#D4A574]/20 rounded-2xl overflow-hidden group hover:border-[#D4A574]/60 hover:shadow-xl hover:shadow-black/40 transition-all duration-300"
+        >
+          <!-- Imagen -->
+          <div class="relative h-52 overflow-hidden">
+            <img
+              src={show.imagen}
+              alt={show.titulo}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-4 py-3">
+              <div class="flex flex-wrap gap-1.5">
+                {show.fechas.map((dia) => (
+                  <span class="bg-[#8B3A3A] text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
+                    {dia} ago
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <!-- Contenido -->
+          <div class="p-6">
+            <h3 class="text-xl font-black text-white uppercase tracking-tight leading-tight mb-1 group-hover:text-[#D4A574] transition-colors duration-300">
+              {show.titulo}
+            </h3>
+            <p class="text-[#D4A574] text-sm font-semibold mb-1">{show.compania}</p>
+            <p class="text-zinc-400 text-sm mb-6">{show.venue}</p>
+
+            <div class="flex gap-3">
+              <a
+                href="#"
+                class="flex-1 text-center text-xs font-bold uppercase tracking-widest py-2.5 rounded-lg border border-zinc-600 text-zinc-300 hover:border-[#D4A574] hover:text-[#D4A574] transition-all duration-300"
+              >
+                Ver detalles
+              </a>
+              <a
+                href="#"
+                class="flex-1 text-center text-xs font-bold uppercase tracking-widest py-2.5 rounded-lg bg-[#8B3A3A] text-white hover:bg-[#D4A574] hover:text-[#1a3a45] transition-all duration-300"
+              >
+                Comprar entradas
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Sin resultados -->
+    <div id="no-results" class="hidden text-center py-20">
+      <p class="text-zinc-400 text-lg mb-2">No hay espectáculos para los filtros seleccionados.</p>
+      <button
+        id="clear-filters-2"
+        class="mt-4 text-sm font-bold text-[#D4A574] underline underline-offset-4 hover:text-white transition-colors"
+      >
+        Ver todos los espectáculos
+      </button>
+    </div>
+
+  </Section>
+</Layout>
+
+<script>
+  // ── Acordeones de filtros ───────────────────────────────────
+  function setupToggle(btnId: string, panelId: string, arrowId: string) {
+    const btn = document.getElementById(btnId)!;
+    const panel = document.getElementById(panelId)!;
+    const arrow = document.getElementById(arrowId)!;
+    btn.addEventListener('click', () => {
+      const open = !panel.classList.contains('hidden');
+      panel.classList.toggle('hidden', open);
+      arrow.style.transform = open ? '' : 'rotate(180deg)';
+      btn.setAttribute('aria-expanded', String(!open));
+    });
+  }
+
+  setupToggle('toggle-fecha', 'panel-fecha', 'arrow-fecha');
+  setupToggle('toggle-venue', 'panel-venue', 'arrow-venue');
+
+  // ── Estado ─────────────────────────────────────────────────
+  const cards = document.querySelectorAll<HTMLElement>('[data-card]');
+  const resultCount = document.getElementById('result-count')!;
+  const filterStatus = document.getElementById('filter-status')!;
+  const noResults = document.getElementById('no-results')!;
+  const cardsGrid = document.getElementById('cards-grid')!;
+
+  const selectedDays = new Set<number>();
+  let selectedVenue: string | null = null;
+
+  // ── Calendario: visuals ─────────────────────────────────────
+  function updateCalendarVisuals() {
+    const dayBtns = document.querySelectorAll<HTMLElement>('.calendar-day');
+
+    const min = selectedDays.size > 0 ? Math.min(...selectedDays) : null;
+    const max = selectedDays.size > 0 ? Math.max(...selectedDays) : null;
+
+    dayBtns.forEach(btn => {
+      const d = Number(btn.dataset.day);
+      const isEndpoint = min !== null && (d === min || d === max);
+      const isMiddle = min !== null && max !== null && d > min && d < max;
+
+      btn.classList.remove(
+        'bg-[#8B3A3A]', 'ring-2', 'ring-[#D4A574]', 'text-white',
+        'bg-[#8B3A3A]/40', 'text-zinc-200'
+      );
+
+      if (isEndpoint) {
+        btn.classList.add('bg-[#8B3A3A]', 'ring-2', 'ring-[#D4A574]', 'text-white');
+      } else if (isMiddle) {
+        btn.classList.add('bg-[#8B3A3A]/40', 'text-zinc-200');
+      }
+    });
+  }
+
+  // ── Filtrado ────────────────────────────────────────────────
+  function applyFilters() {
+    const min = selectedDays.size > 0 ? Math.min(...selectedDays) : null;
+    const max = selectedDays.size > 0 ? Math.max(...selectedDays) : null;
+
+    let visible = 0;
+    cards.forEach(card => {
+      const fechas = card.dataset.fechas!.split(',').map(Number);
+      const venue = card.dataset.venue!;
+
+      const matchDay = min === null || fechas.some(f => f >= min && f <= max!);
+      const matchVenue = !selectedVenue || venue === selectedVenue;
+
+      const show = matchDay && matchVenue;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+
+    resultCount.textContent = String(visible);
+
+    const hasFilter = selectedDays.size > 0 || selectedVenue !== null;
+    filterStatus.classList.toggle('hidden', !hasFilter);
+    filterStatus.classList.toggle('flex', hasFilter);
+    noResults.classList.toggle('hidden', visible > 0);
+    cardsGrid.classList.toggle('hidden', visible === 0);
+  }
+
+  function clearFilters() {
+    selectedDays.clear();
+    selectedVenue = null;
+    updateCalendarVisuals();
+    document.querySelectorAll<HTMLElement>('.venue-btn').forEach(btn => {
+      btn.classList.remove('bg-[#8B3A3A]', 'border-[#8B3A3A]', 'text-white');
+      btn.classList.add('border-zinc-600', 'text-zinc-300');
+    });
+    applyFilters();
+  }
+
+  // ── Listeners: calendario ───────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.calendar-day').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const day = Number(btn.dataset.day);
+
+      if (selectedDays.has(day)) {
+        // Toggle: deseleccionar esta fecha
+        selectedDays.delete(day);
+      } else {
+        // Si el día clickeado está dentro del rango actual, recortar el rango
+        const currentMax = selectedDays.size > 0 ? Math.max(...selectedDays) : null;
+        if (currentMax !== null && day < currentMax) {
+          for (const d of [...selectedDays]) {
+            if (d > day) selectedDays.delete(d);
+          }
+        }
+        selectedDays.add(day);
+      }
+
+      updateCalendarVisuals();
+      applyFilters();
+    });
+  });
+
+  // ── Listeners: venue ────────────────────────────────────────
+  document.querySelectorAll<HTMLElement>('.venue-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const venue = btn.dataset.venueFilter!;
+      if (selectedVenue === venue) {
+        selectedVenue = null;
+        btn.classList.remove('bg-[#8B3A3A]', 'border-[#8B3A3A]', 'text-white');
+        btn.classList.add('border-zinc-600', 'text-zinc-300');
+      } else {
+        selectedVenue = venue;
+        document.querySelectorAll<HTMLElement>('.venue-btn').forEach(b => {
+          b.classList.remove('bg-[#8B3A3A]', 'border-[#8B3A3A]', 'text-white');
+          b.classList.add('border-zinc-600', 'text-zinc-300');
+        });
+        btn.classList.remove('border-zinc-600', 'text-zinc-300');
+        btn.classList.add('bg-[#8B3A3A]', 'border-[#8B3A3A]', 'text-white');
+      }
+      applyFilters();
+    });
+  });
+
+  document.getElementById('clear-filters')?.addEventListener('click', clearFilters);
+  document.getElementById('clear-filters-2')?.addEventListener('click', clearFilters);
+</script>
