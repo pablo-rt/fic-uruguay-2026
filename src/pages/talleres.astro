@@ -1,14 +1,43 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import Card from '../components/Card.astro';
+
+const talleres = [
+	{ titulo: "Trapecio Intermedio", instructor: "Lucia Marini", nivel: "Intermedio", dias: "20–22 set", accent: "sun" as const, icon: "✦" },
+	{ titulo: "Acrobacia de Piso", instructor: "Pedro Ramos", nivel: "Principiante", dias: "18–19 set", accent: "teal" as const, icon: "◐" },
+	{ titulo: "Malabares Avanzado", instructor: "Jin Park", nivel: "Avanzado", dias: "23–25 set", accent: "flame" as const, icon: "✺" },
+	{ titulo: "Clown y Comedia Física", instructor: "Marina Costa", nivel: "Todos los niveles", dias: "21–23 set", accent: "magenta" as const, icon: "❍" },
+	{ titulo: "Equilibrio sobre Cable", instructor: "Théo Dubois", nivel: "Intermedio", dias: "24–26 set", accent: "violet" as const, icon: "◯" },
+	{ titulo: "Telas Aéreas", instructor: "Sofía Albornoz", nivel: "Principiante", dias: "17–19 set", accent: "crimson" as const, icon: "❋" },
+];
 ---
 
-<Layout title="Talleres | FIC Uruguay 2026">
-	<!-- Hero Section -->
+<Layout title="Talleres | FIC 2026">
 	<Hero
 		title="Talleres"
-		subtitle="Aprende del Circo"
+		subtitle="Aprendé del Circo"
 		description="Talleres intensivos con maestros circenses internacionales. Para todos los niveles, desde principiantes hasta profesionales."
-		backgroundImage="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
 	/>
+
+	<Section
+		id="talleres"
+		subtitle="Programa Formativo"
+		title="6 talleres · 5 maestros"
+		description="Una semana de formación práctica con artistas de Uruguay, Argentina, Francia, Brasil y Corea del Sur."
+		accent="flame"
+	>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			{talleres.map(t => (
+				<Card
+					accent={t.accent}
+					icon={t.icon}
+					title={t.titulo}
+					description={`${t.instructor} · ${t.nivel} · ${t.dias}`}
+					cta={{ text: "Inscribirse", href: "#" }}
+				/>
+			))}
+		</div>
+	</Section>
 </Layout>

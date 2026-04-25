@@ -102,22 +102,22 @@ while (calendarCells.length % 7 !== 0) calendarCells.push(null);
     <div class="mb-12 flex flex-col lg:flex-row gap-4 items-start">
 
       <!-- Calendario (colapsable) -->
-      <div class="w-full lg:w-72">
+      <div class="w-full lg:w-80">
         <button
           id="toggle-fecha"
-          class="w-full flex justify-between items-center px-5 py-3 bg-[#1a3a45] border border-[#D4A574]/20 rounded-2xl text-left hover:border-[#D4A574]/50 transition-all duration-200 group"
+          class="w-full flex justify-between items-center px-5 py-3 bg-navy-soft border-2 border-sun/30 rounded-full text-left hover:border-sun transition-all duration-200 group"
           aria-expanded="false"
         >
-          <span class="text-xs uppercase tracking-widest text-[#D4A574] font-bold">Filtrar por fecha</span>
-          <svg id="arrow-fecha" class="w-4 h-4 text-zinc-400 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <span class="text-xs uppercase tracking-widest text-sun font-black">◐ Filtrar por fecha</span>
+          <svg id="arrow-fecha" class="w-4 h-4 text-cream transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-        <div id="panel-fecha" class="hidden mt-2 bg-[#1a3a45] border border-[#D4A574]/20 rounded-2xl p-5">
-          <p class="text-center text-sm font-black uppercase tracking-widest text-white mb-4">Setiembre 2026</p>
+        <div id="panel-fecha" class="hidden mt-2 bg-navy-soft border-2 border-sun/30 rounded-3xl p-5">
+          <p class="text-center text-sm font-black uppercase tracking-widest text-cream mb-4">Setiembre 2026</p>
           <div class="grid grid-cols-7 mb-1">
             {['Lu','Ma','Mi','Ju','Vi','Sa','Do'].map(d => (
-              <div class="text-center text-zinc-500 text-xs font-semibold py-1">{d}</div>
+              <div class="text-center text-cream/40 text-xs font-bold py-1">{d}</div>
             ))}
           </div>
           <div class="grid grid-cols-7 gap-y-1">
@@ -128,13 +128,13 @@ while (calendarCells.length % 7 !== 0) calendarCells.push(null);
                   ? (
                     <button
                       data-day={day}
-                      class="calendar-day w-8 h-8 mx-auto rounded-full text-sm font-bold text-white hover:bg-[#8B3A3A] transition-all duration-200 cursor-pointer"
+                      class="calendar-day w-9 h-9 mx-auto rounded-full text-sm font-bold text-cream hover:bg-flame hover:text-cream transition-all duration-200 cursor-pointer"
                     >
                       {day}
                     </button>
                   )
                   : (
-                    <div class="w-8 h-8 mx-auto rounded-full text-sm text-zinc-600 flex items-center justify-center cursor-not-allowed select-none">
+                    <div class="w-9 h-9 mx-auto rounded-full text-sm text-cream/20 flex items-center justify-center cursor-not-allowed select-none">
                       {day}
                     </div>
                   )
@@ -147,20 +147,20 @@ while (calendarCells.length % 7 !== 0) calendarCells.push(null);
       <div class="flex-1 w-full">
         <button
           id="toggle-lugar"
-          class="w-full flex justify-between items-center px-5 py-3 bg-[#1a3a45] border border-[#D4A574]/20 rounded-2xl text-left hover:border-[#D4A574]/50 transition-all duration-200"
+          class="w-full flex justify-between items-center px-5 py-3 bg-navy-soft border-2 border-teal/30 rounded-full text-left hover:border-teal transition-all duration-200"
           aria-expanded="false"
         >
-          <span class="text-xs uppercase tracking-widest text-[#D4A574] font-bold">Filtrar por lugar</span>
-          <svg id="arrow-lugar" class="w-4 h-4 text-zinc-400 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <span class="text-xs uppercase tracking-widest text-teal font-black">◐ Filtrar por lugar</span>
+          <svg id="arrow-lugar" class="w-4 h-4 text-cream transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
           </svg>
         </button>
-        <div id="panel-lugar" class="hidden mt-2 bg-[#1a3a45] border border-[#D4A574]/20 rounded-2xl p-5">
+        <div id="panel-lugar" class="hidden mt-2 bg-navy-soft border-2 border-teal/30 rounded-3xl p-5">
           <div class="flex flex-wrap gap-2">
             {lugares.map(lugar => (
               <button
                 data-lugar-filter={lugar}
-                class="lugar-btn px-4 py-2 rounded-full text-sm font-semibold border border-zinc-600 text-zinc-300 hover:border-[#D4A574] hover:text-[#D4A574] transition-all duration-200 cursor-pointer"
+                class="lugar-btn px-4 py-2 rounded-full text-sm font-semibold border-2 border-cream/30 text-cream/80 hover:border-teal hover:text-teal transition-all duration-200 cursor-pointer"
               >
                 {lugar}
               </button>
@@ -173,38 +173,55 @@ while (calendarCells.length % 7 !== 0) calendarCells.push(null);
 
     <!-- Estado de filtros activos + limpiar -->
     <div id="filter-status" class="mb-8 hidden items-center gap-4">
-      <p class="text-zinc-400 text-sm">
-        Mostrando <span id="result-count" class="text-white font-bold">{espectaculos.length}</span> espectáculo(s)
+      <p class="text-cream/70 text-sm">
+        Mostrando <span id="result-count" class="text-sun font-black text-base">{espectaculos.length}</span> espectáculo(s)
       </p>
       <button
         id="clear-filters"
-        class="text-xs uppercase tracking-widest font-bold text-[#8B3A3A] hover:text-[#D4A574] transition-colors duration-200 underline underline-offset-4"
+        class="text-xs uppercase tracking-widest font-black text-flame hover:text-sun transition-colors duration-200 underline underline-offset-4 decoration-2"
       >
-        Limpiar filtros
+        ✕ Limpiar filtros
       </button>
     </div>
     <!-- ── FIN FILTROS ────────────────────────────────────────── -->
 
     <!-- Grilla de tarjetas -->
-    <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {espectaculos.map((show) => (
+    <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {espectaculos.map((show, i) => {
+        const colors = ['#F4C430','#3DBCBC','#E85A2C','#C589B7','#8E5BA8','#B83A3A'];
+        const aHex = colors[i % colors.length];
+        return (
         <article
           data-card
           data-fechas={show.fechas.join(',')}
           data-lugar={show.lugar}
-          class="bg-[#1a3a45] border border-[#D4A574]/20 rounded-2xl overflow-hidden group hover:border-[#D4A574]/60 hover:shadow-xl hover:shadow-black/40 transition-all duration-300"
+          class="relative group rounded-3xl overflow-hidden border-2 transition-all duration-300 bg-navy-soft hover:-translate-y-1"
+          style={`border-color:${aHex}`}
         >
+          <!-- Cintita bicolor superior -->
+          <div class="h-2 flex">
+            <div class="flex-1" style={`background:${aHex}`}></div>
+            <div class="flex-1 bg-teal"></div>
+            <div class="flex-1 bg-flame"></div>
+            <div class="flex-1 bg-magenta"></div>
+          </div>
+
           <!-- Imagen -->
           <div class="relative h-52 overflow-hidden">
             <img
               src={show.imagen}
               alt={show.titulo}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
             />
-            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent px-4 py-3">
+            <!-- Círculo bicolor decorativo -->
+            <div class="absolute top-3 right-3 w-12 h-12 rounded-full overflow-hidden ring-2 ring-cream">
+              <div class="h-1/2" style={`background:${aHex}`}></div>
+              <div class="h-1/2 bg-teal"></div>
+            </div>
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy-deep via-navy-deep/80 to-transparent px-4 py-4">
               <div class="flex flex-wrap gap-1.5">
                 {show.fechas.map((dia) => (
-                  <span class="bg-[#8B3A3A] text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
+                  <span class="bg-cream text-navy text-xs font-black px-2.5 py-1 rounded-full uppercase tracking-wider">
                     {dia} set
                   </span>
                 ))}
@@ -214,37 +231,44 @@ while (calendarCells.length % 7 !== 0) calendarCells.push(null);
 
           <!-- Contenido -->
           <div class="p-6">
-            <h3 class="text-xl font-black text-white uppercase tracking-tight leading-tight mb-1 group-hover:text-[#D4A574] transition-colors duration-300">
+            <h3 class="font-display text-2xl text-cream uppercase tracking-tight leading-[0.95] mb-2 group-hover:translate-x-1 transition-transform" style={`color:${aHex}`}>
               {show.titulo}
             </h3>
-            <p class="text-[#D4A574] text-sm font-semibold mb-1">{show.compania}</p>
-            <p class="text-zinc-400 text-sm mb-6">{show.lugar}</p>
+            <p class="text-cream font-bold text-sm mb-1">{show.compania}</p>
+            <p class="text-cream/60 text-sm mb-6">📍 {show.lugar}</p>
 
-            <div class="flex gap-3">
+            <div class="flex gap-2">
               <a
                 href="#"
-                class="flex-1 text-center text-xs font-bold uppercase tracking-widest py-2.5 rounded-lg border border-zinc-600 text-zinc-300 hover:border-[#D4A574] hover:text-[#D4A574] transition-all duration-300"
+                class="flex-1 text-center text-xs font-black uppercase tracking-widest py-2.5 rounded-full border-2 border-cream/30 text-cream/80 hover:border-cream hover:text-cream transition-all duration-300"
               >
-                Ver detalles
+                Detalles
               </a>
               <a
                 href="#"
-                class="flex-1 text-center text-xs font-bold uppercase tracking-widest py-2.5 rounded-lg bg-[#8B3A3A] text-white hover:bg-[#D4A574] hover:text-[#1a3a45] transition-all duration-300"
+                class="flex-1 text-center text-xs font-black uppercase tracking-widest py-2.5 rounded-full text-navy hover:bg-cream transition-all duration-300"
+                style={`background:${aHex}`}
               >
-                Comprar entradas
+                Entradas
               </a>
             </div>
           </div>
         </article>
-      ))}
+        );
+      })}
     </div>
 
     <!-- Sin resultados -->
     <div id="no-results" class="hidden text-center py-20">
-      <p class="text-zinc-400 text-lg mb-2">No hay espectáculos para los filtros seleccionados.</p>
+      <div class="inline-block w-20 h-20 rounded-full overflow-hidden mb-4">
+        <div class="h-1/2 bg-flame"></div>
+        <div class="h-1/2 bg-magenta"></div>
+      </div>
+      <p class="text-cream/70 text-lg mb-2 font-display uppercase">No hay espectáculos</p>
+      <p class="text-cream/50 text-sm mb-4">Probá con otros filtros</p>
       <button
         id="clear-filters-2"
-        class="mt-4 text-sm font-bold text-[#D4A574] underline underline-offset-4 hover:text-white transition-colors"
+        class="text-sm font-black text-sun underline underline-offset-4 decoration-2 hover:text-flame transition-colors"
       >
         Ver todos los espectáculos
       </button>
@@ -293,14 +317,14 @@ while (calendarCells.length % 7 !== 0) calendarCells.push(null);
       const isMiddle = min !== null && max !== null && d > min && d < max;
 
       btn.classList.remove(
-        'bg-[#8B3A3A]', 'ring-2', 'ring-[#D4A574]', 'text-white',
-        'bg-[#8B3A3A]/40', 'text-zinc-200'
+        'bg-flame', 'ring-2', 'ring-sun', 'text-cream',
+        'bg-flame/40', 'text-cream/80'
       );
 
       if (isEndpoint) {
-        btn.classList.add('bg-[#8B3A3A]', 'ring-2', 'ring-[#D4A574]', 'text-white');
+        btn.classList.add('bg-flame', 'ring-2', 'ring-sun', 'text-cream');
       } else if (isMiddle) {
-        btn.classList.add('bg-[#8B3A3A]/40', 'text-zinc-200');
+        btn.classList.add('bg-flame/40', 'text-cream/80');
       }
     });
   }
@@ -337,8 +361,8 @@ while (calendarCells.length % 7 !== 0) calendarCells.push(null);
     selectedLugar = null;
     updateCalendarVisuals();
     document.querySelectorAll<HTMLElement>('.lugar-btn').forEach(btn => {
-      btn.classList.remove('bg-[#8B3A3A]', 'border-[#8B3A3A]', 'text-white');
-      btn.classList.add('border-zinc-600', 'text-zinc-300');
+      btn.classList.remove('bg-teal', 'border-teal', 'text-navy');
+      btn.classList.add('border-cream/30', 'text-cream/80');
     });
     applyFilters();
   }
@@ -373,16 +397,16 @@ while (calendarCells.length % 7 !== 0) calendarCells.push(null);
       const lugar = btn.dataset.lugarFilter!;
       if (selectedLugar === lugar) {
         selectedLugar = null;
-        btn.classList.remove('bg-[#8B3A3A]', 'border-[#8B3A3A]', 'text-white');
-        btn.classList.add('border-zinc-600', 'text-zinc-300');
+        btn.classList.remove('bg-teal', 'border-teal', 'text-navy');
+        btn.classList.add('border-cream/30', 'text-cream/80');
       } else {
         selectedLugar = lugar;
         document.querySelectorAll<HTMLElement>('.lugar-btn').forEach(b => {
-          b.classList.remove('bg-[#8B3A3A]', 'border-[#8B3A3A]', 'text-white');
-          b.classList.add('border-zinc-600', 'text-zinc-300');
+          b.classList.remove('bg-teal', 'border-teal', 'text-navy');
+          b.classList.add('border-cream/30', 'text-cream/80');
         });
-        btn.classList.remove('border-zinc-600', 'text-zinc-300');
-        btn.classList.add('bg-[#8B3A3A]', 'border-[#8B3A3A]', 'text-white');
+        btn.classList.remove('border-cream/30', 'text-cream/80');
+        btn.classList.add('bg-teal', 'border-teal', 'text-navy');
       }
       applyFilters();
     });

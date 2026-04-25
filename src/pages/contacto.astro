@@ -4,244 +4,69 @@ import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 ---
 
-<Layout title="Contacto | FIC Uruguay 2026">
-	<!-- Hero Section -->
-	<Hero 
+<Layout title="Contacto | FIC 2026">
+	<Hero
 		title="Contacto"
-		subtitle="Ponte en Contacto"
-		description="¿Preguntas? ¿Sugerencias? Nos encantaría escucharte. Contáctanos de cualquier forma."
-		backgroundImage="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80"
+		subtitle="Hablemos"
+		description="¿Preguntas? ¿Sugerencias? Nos encantaría escucharte. Escribinos por cualquier canal."
 	/>
 
-	<!-- Formulario y Información -->
-	<Section 
-		id="contacto"
-		title="Envíanos un Mensaje"
-		subtitle="Formulario de Contacto"
-		description="Completa el formulario y nos pondremos en contacto pronto"
-	>
-		<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+	<Section id="contacto" subtitle="Formulario" title="Envianos un mensaje" description="Completá los datos y te contactamos pronto." accent="sun">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
+
 			<!-- Formulario -->
-			<div>
-				<form class="space-y-6">
-					<div>
-						<label class="block text-sm font-semibold mb-2">Nombre Completo</label>
-						<input 
-							type="text" 
-							placeholder="Tu nombre"
-							class="w-full px-6 py-3 rounded-lg bg-zinc-900 border border-zinc-800 focus:border-[#8B3A3A] focus:outline-none transition-colors text-white placeholder-zinc-500"
-							required
-						/>
-					</div>
+			<form class="space-y-5">
+				<div>
+					<label class="block text-xs uppercase tracking-widest font-black mb-2 text-sun">Nombre</label>
+					<input type="text" placeholder="Tu nombre" class="w-full px-5 py-3 rounded-full bg-navy-soft border-2 border-cream/20 focus:border-sun focus:outline-none transition-colors text-cream placeholder-cream/40" required />
+				</div>
+				<div>
+					<label class="block text-xs uppercase tracking-widest font-black mb-2 text-teal">Email</label>
+					<input type="email" placeholder="tu@email.com" class="w-full px-5 py-3 rounded-full bg-navy-soft border-2 border-cream/20 focus:border-teal focus:outline-none transition-colors text-cream placeholder-cream/40" required />
+				</div>
+				<div>
+					<label class="block text-xs uppercase tracking-widest font-black mb-2 text-flame">Asunto</label>
+					<select class="w-full px-5 py-3 rounded-full bg-navy-soft border-2 border-cream/20 focus:border-flame focus:outline-none transition-colors text-cream" required>
+						<option value="">Seleccioná un asunto</option>
+						<option>Convocatorias</option>
+						<option>Espectáculos</option>
+						<option>Talleres</option>
+						<option>Entradas</option>
+						<option>Prensa</option>
+						<option>Otro</option>
+					</select>
+				</div>
+				<div>
+					<label class="block text-xs uppercase tracking-widest font-black mb-2 text-magenta">Mensaje</label>
+					<textarea rows="6" placeholder="Contanos qué necesitás…" class="w-full px-5 py-4 rounded-3xl bg-navy-soft border-2 border-cream/20 focus:border-magenta focus:outline-none transition-colors text-cream placeholder-cream/40 resize-none" required></textarea>
+				</div>
+				<button type="submit" class="w-full bg-sun text-navy py-4 rounded-full font-black uppercase tracking-widest text-sm hover:bg-flame hover:text-cream transition-colors shadow-[6px_6px_0_0_#3DBCBC] hover:translate-x-1 hover:translate-y-1 hover:shadow-[3px_3px_0_0_#3DBCBC]">
+					Enviar mensaje →
+				</button>
+			</form>
 
-					<div>
-						<label class="block text-sm font-semibold mb-2">Correo Electrónico</label>
-						<input 
-							type="email" 
-							placeholder="tu@email.com"
-							class="w-full px-6 py-3 rounded-lg bg-zinc-900 border border-zinc-800 focus:border-[#8B3A3A] focus:outline-none transition-colors text-white placeholder-zinc-500"
-							required
-						/>
+			<!-- Info de contacto -->
+			<div class="space-y-4">
+				{[
+					{ titulo: "Ubicación", contenido: "Festival Internacional de Circo · Montevideo, Uruguay · 17–27 setiembre 2026", color: "#F4C430" },
+					{ titulo: "Email", contenido: "info@ficuruguay.com · convocatorias@ficuruguay.com", color: "#3DBCBC" },
+					{ titulo: "Teléfono", contenido: "+598 29 XXX XXX · Lun a Vie · 09:00–18:00", color: "#E85A2C" },
+					{ titulo: "Redes", contenido: "@fic.uruguay en Instagram, X, Facebook y YouTube", color: "#C589B7" },
+				].map(({ titulo, contenido, color }) => (
+					<div class="bg-navy-soft border-2 rounded-3xl p-6 hover:-translate-y-1 transition-transform" style={`border-color:${color}`}>
+						<div class="flex items-start gap-4">
+							<div class="shrink-0 w-12 h-12 rounded-full overflow-hidden ring-2 ring-cream/20">
+								<div class="h-1/2" style={`background:${color}`}></div>
+								<div class="h-1/2 bg-navy-deep"></div>
+							</div>
+							<div>
+								<h3 class="font-display text-xl text-cream uppercase mb-1" style={`color:${color}`}>{titulo}</h3>
+								<p class="text-cream/70 text-sm leading-relaxed">{contenido}</p>
+							</div>
+						</div>
 					</div>
-
-					<div>
-						<label class="block text-sm font-semibold mb-2">Teléfono (Opcional)</label>
-						<input 
-							type="tel" 
-							placeholder="+598 9 XXXX XXXX"
-							class="w-full px-6 py-3 rounded-lg bg-zinc-900 border border-zinc-800 focus:border-[#8B3A3A] focus:outline-none transition-colors text-white placeholder-zinc-500"
-						/>
-					</div>
-
-					<div>
-						<label class="block text-sm font-semibold mb-2">Asunto</label>
-						<select 
-							class="w-full px-6 py-3 rounded-lg bg-zinc-900 border border-zinc-800 focus:border-[#8B3A3A] focus:outline-none transition-colors text-white"
-							required
-						>
-							<option value="">Selecciona un asunto</option>
-							<option value="convocatoria">Consulta sobre Convocatoria</option>
-							<option value="espectaculos">Información de Espectáculos</option>
-							<option value="talleres">Inscripción en Talleres</option>
-							<option value="entradas">Compra de Entradas</option>
-							<option value="prensa">Consulta de Prensa</option>
-							<option value="otro">Otro</option>
-						</select>
-					</div>
-
-					<div>
-						<label class="block text-sm font-semibold mb-2">Mensaje</label>
-						<textarea 
-							placeholder="Cuéntanos qué necesitas..."
-							rows="6"
-							class="w-full px-6 py-3 rounded-lg bg-zinc-900 border border-zinc-800 focus:border-[#8B3A3A] focus:outline-none transition-colors text-white placeholder-zinc-500 resize-none"
-							required
-						></textarea>
-					</div>
-
-					<button 
-						type="submit"
-						class="w-full px-8 py-3 bg-[#8B3A3A] text-white font-bold uppercase tracking-widest rounded-lg hover:bg-[#6B2A2A] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(139,58,58,0.5)]"
-					>
-						Enviar Mensaje
-					</button>
-				</form>
+				))}
 			</div>
-
-			<!-- Información de Contacto -->
-			<div class="space-y-8">
-				<div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
-					<h3 class="text-2xl font-bold mb-4 text-[#8B3A3A]">📍 Ubicación</h3>
-					<p class="text-zinc-300 mb-2">Festival Internacional de Circo</p>
-					<p class="text-zinc-400">Montevideo, Uruguay</p>
-					<p class="text-zinc-400 text-sm mt-4">Octubre 15-30, 2026</p>
-				</div>
-
-				<div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
-					<h3 class="text-2xl font-bold mb-4 text-[#8B3A3A]">📧 Email</h3>
-					<p class="text-zinc-300 mb-2">
-						<a href="mailto:info@ficuruguay.com" class="hover:text-[#8B3A3A] transition-colors">
-							info@ficuruguay.com
-						</a>
-					</p>
-					<p class="text-zinc-300">
-						<a href="mailto:convocatorias@ficuruguay.com" class="hover:text-[#8B3A3A] transition-colors">
-							convocatorias@ficuruguay.com
-						</a>
-					</p>
-				</div>
-
-				<div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
-					<h3 class="text-2xl font-bold mb-4 text-[#8B3A3A]">📱 Teléfono</h3>
-					<p class="text-zinc-300 mb-2">
-						<a href="tel:+59829XXXXXX" class="hover:text-[#8B3A3A] transition-colors">
-							+598 29 XXXX XXX
-						</a>
-					</p>
-					<p class="text-zinc-400 text-sm mt-4">Lunes a Viernes: 09:00 - 18:00</p>
-				</div>
-
-				<div class="bg-zinc-900/50 border border-zinc-800 p-8 rounded-2xl">
-					<h3 class="text-2xl font-bold mb-4 text-[#8B3A3A]">🌐 Redes Sociales</h3>
-					<div class="flex gap-4">
-						<a href="#" class="w-12 h-12 rounded-lg bg-zinc-800 hover:bg-[#8B3A3A] flex items-center justify-center transition-colors text-lg font-bold">
-							f
-						</a>
-						<a href="#" class="w-12 h-12 rounded-lg bg-zinc-800 hover:bg-[#8B3A3A] flex items-center justify-center transition-colors text-lg font-bold">
-							𝕏
-						</a>
-						<a href="#" class="w-12 h-12 rounded-lg bg-zinc-800 hover:bg-[#8B3A3A] flex items-center justify-center transition-colors text-lg font-bold">
-							📷
-						</a>
-						<a href="#" class="w-12 h-12 rounded-lg bg-zinc-800 hover:bg-[#8B3A3A] flex items-center justify-center transition-colors text-lg font-bold">
-							▶
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</Section>
-
-	<!-- Preguntas Frecuentes -->
-	<Section 
-		id="faq"
-		title="Preguntas Frecuentes"
-		subtitle="FAQ"
-		description="Respuestas a las preguntas más comunes"
-		dark={true}
-	>
-		<div class="max-w-3xl mx-auto space-y-6">
-			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
-				<summary class="flex justify-between items-center font-bold text-lg">
-					¿Cuándo se abre la venta de entradas?
-					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
-				</summary>
-				<p class="text-zinc-400 mt-4">La venta de entradas abre el 1 de Agosto de 2026. Puedes comprar en línea o en las taquillas del festival.</p>
-			</details>
-
-			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
-				<summary class="flex justify-between items-center font-bold text-lg">
-					¿Hay descuentos para grupos?
-					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
-				</summary>
-				<p class="text-zinc-400 mt-4">Sí, ofrecemos descuentos especiales para grupos de 10 o más personas. Contáctanos para más información.</p>
-			</details>
-
-			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
-				<summary class="flex justify-between items-center font-bold text-lg">
-					¿Puedo cambiar o devolver mi entrada?
-					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
-				</summary>
-				<p class="text-zinc-400 mt-4">Las entradas pueden cambiarse hasta 7 días antes del evento. Las devoluciones están sujetas a condiciones especiales.</p>
-			</details>
-
-			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
-				<summary class="flex justify-between items-center font-bold text-lg">
-					¿Hay estacionamiento disponible?
-					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
-				</summary>
-				<p class="text-zinc-400 mt-4">Sí, contamos con estacionamiento gratuito para asistentes. También hay acceso a transporte público cercano.</p>
-			</details>
-
-			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
-				<summary class="flex justify-between items-center font-bold text-lg">
-					¿El festival es accesible para personas con discapacidad?
-					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
-				</summary>
-				<p class="text-zinc-400 mt-4">Sí, el festival cuenta con acceso para sillas de ruedas, baños adaptados y servicios especiales. Contáctanos para más detalles.</p>
-			</details>
-
-			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
-				<summary class="flex justify-between items-center font-bold text-lg">
-					¿Hay opciones de alojamiento?
-					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
-				</summary>
-				<p class="text-zinc-400 mt-4">Tenemos convenios con hoteles y hostales en Montevideo. Podemos ayudarte a encontrar alojamiento a precios especiales.</p>
-			</details>
-		</div>
-	</Section>
-
-	<!-- Mapa -->
-	<Section 
-		id="ubicacion"
-		title="Ubicación del Festival"
-		subtitle="Dónde Nos Encontramos"
-	>
-		<div class="max-w-4xl mx-auto">
-			<div class="bg-zinc-900/50 border border-zinc-800 rounded-2xl overflow-hidden h-96">
-				<iframe 
-					src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3273.5160395393!2d-56.16!3d-34.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959f8f8f8f8f8f8f%3A0x0!2sMontevideoUruguay!5e0!3m2!1ses!2suy!4v1234567890"
-					width="100%"
-					height="100%"
-					style="border:0;"
-					allowfullscreen=""
-					loading="lazy"
-					referrerpolicy="no-referrer-when-downgrade"
-				></iframe>
-			</div>
-		</div>
-	</Section>
-
-	<!-- CTA Final -->
-	<Section 
-		id="cta"
-		title="¿Listo para Conectar?"
-		subtitle="Únete a la Comunidad"
-		dark={true}
-	>
-		<div class="flex flex-col sm:flex-row gap-6 justify-center">
-			<a 
-				href="#contacto"
-				class="px-8 py-4 bg-[#8B3A3A] text-white font-bold uppercase tracking-widest rounded-lg hover:bg-[#6B2A2A] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(139,58,58,0.5)] text-center"
-			>
-				Enviar Mensaje
-			</a>
-			<a 
-				href="/"
-				class="px-8 py-4 border-2 border-[#8B3A3A] text-[#8B3A3A] font-bold uppercase tracking-widest rounded-lg hover:bg-[#8B3A3A] hover:text-white transition-all duration-300 text-center"
-			>
-				Volver al Inicio
-			</a>
 		</div>
 	</Section>
 </Layout>

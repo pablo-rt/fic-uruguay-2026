@@ -3,171 +3,165 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
 import Card from '../components/Card.astro';
+import HalfCircleStrip from '../components/HalfCircleStrip.astro';
 ---
 
-<Layout title="FIC Uruguay 2026 | Festival Internacional de Circo">
-	<!-- Hero Section -->
-	<Hero 
+<Layout title="FIC 2026 · Festival Internacional de Circo">
+
+	<Hero
 		title="FIC 2026"
-		subtitle="Festival Internacional de Circo"
-		description="La 5ta edición del mayor festival de circo de América Latina. Celebrando el arte, la acrobacia y la magia del circo en Montevideo."
-		cta={{
-			text: "Descubre más",
-			href: "#sobre"
-		}}
+		subtitle="Festival Internacional de Circo · Uruguay"
+		description="La 5ta edición del mayor festival de circo de América Latina. Diez días de espectáculos, talleres y arte vivo en Montevideo."
+		cta={{ text: "Ver programación", href: "/programacion" }}
 	/>
 
-	<!-- Sobre el Festival -->
-	<Section 
+	<!-- Marquee de palabras -->
+	<div class="bg-sun text-navy py-5 overflow-hidden border-b-4 border-navy">
+		<div class="flex animate-marquee whitespace-nowrap font-display text-3xl md:text-5xl uppercase">
+			{Array.from({ length: 2 }).map(() => (
+				<div class="flex items-center gap-8 mr-8">
+					<span>Acrobacia</span>
+					<span class="text-flame">●</span>
+					<span>Trapecio</span>
+					<span class="text-teal">●</span>
+					<span>Malabares</span>
+					<span class="text-magenta">●</span>
+					<span>Clown</span>
+					<span class="text-violet">●</span>
+					<span>Equilibrismo</span>
+					<span class="text-crimson">●</span>
+					<span>Teatro Físico</span>
+					<span class="text-flame">●</span>
+				</div>
+			))}
+		</div>
+	</div>
+
+	<!-- Sobre el festival -->
+	<Section
 		id="sobre"
-		title="Sobre el Festival"
-		subtitle="Conoce FIC"
-		description="Un espacio dedicado a celebrar el arte circense en todas sus formas"
+		subtitle="Sobre FIC"
+		title="Tres décadas celebrando el circo"
+		description="Un espacio dedicado a celebrar el arte circense en todas sus formas."
+		accent="sun"
 	>
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-			<Card 
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+			<Card
+				accent="sun"
+				icon="✦"
 				title="Tradición"
 				description="Desde 2002, FIC ha sido la plataforma principal para artistas circenses de toda América Latina."
-				cta={{
-					text: "Historia",
-					href: "#"
-				}}
+				cta={{ text: "Historia", href: "#" }}
 			/>
-			<Card 
-				title="Alcance Internacional"
+			<Card
+				accent="teal"
+				icon="◐"
+				title="Internacional"
 				description="Artistas de más de 30 países participan en nuestro festival cada año."
-				cta={{
-					text: "Artistas",
-					href: "/espectaculos"
-				}}
+				cta={{ text: "Artistas", href: "/espectaculos" }}
 			/>
-			<Card 
+			<Card
+				accent="flame"
+				icon="✺"
 				title="Innovación"
 				description="Combinamos técnicas tradicionales con propuestas contemporáneas y experimentales."
-				cta={{
-					text: "Espectáculos",
-					href: "/espectaculos"
-				}}
+				cta={{ text: "Espectáculos", href: "/espectaculos" }}
 			/>
 		</div>
 	</Section>
 
-	<!-- Ediciones Anteriores -->
-	<Section 
-		id="ediciones"
-		title="Ediciones Anteriores"
-		subtitle="Nuestro Legado"
-		description="Más de dos décadas celebrando el arte circense"
-		dark={true}
-	>
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-			<Card 
-				title="2022"
-				description="4ta Edición - 15,000 asistentes"
-				featured={false}
-			/>
-			<Card 
-				title="2019"
-				description="3ra Edición - 12,000 asistentes"
-				featured={false}
-			/>
-			<Card 
-				title="2016"
-				description="2da Edición - 10,000 asistentes"
-				featured={false}
-			/>
-			<Card 
-				title="2002"
-				description="1ra Edición - Inicio de la tradición"
-				featured={false}
-			/>
+	<!-- Stats / Números grandes -->
+	<section class="bg-navy-deep py-20 md:py-28 brushstroke">
+		<div class="max-w-7xl mx-auto px-6">
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+				{[
+					{ num: "9", label: "Espectáculos", color: "#F4C430" },
+					{ num: "7", label: "Lugares", color: "#3DBCBC" },
+					{ num: "11", label: "Días", color: "#E85A2C" },
+					{ num: "30+", label: "Artistas", color: "#C589B7" },
+				].map(({ num, label, color }) => (
+					<div class="group">
+						<div class="font-display text-7xl md:text-8xl lg:text-9xl leading-none mb-2 transition-transform group-hover:-translate-y-1" style={`color:${color}`}>
+							{num}
+						</div>
+						<div class="text-cream/70 uppercase tracking-widest text-xs font-bold">{label}</div>
+					</div>
+				))}
+			</div>
 		</div>
-	</Section>
+	</section>
 
-	<!-- Próximos Eventos -->
-	<Section 
+	<!-- Próximos eventos -->
+	<Section
 		id="eventos"
-		title="Próximos Eventos"
-		subtitle="Qué Esperar"
-		description="Descubre lo que te espera en FIC 2026"
+		subtitle="Qué te espera"
+		title="No te pierdas nada"
+		description="Espectáculos, talleres y convocatorias abiertas para artistas y compañías."
+		accent="teal"
 	>
-		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-			<Card 
-				featured={true}
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+			<Card
+				accent="magenta"
 				title="Convocatorias"
-				description="Abierto el llamado para compañías y artistas independientes. Participa en la 5ta edición del festival más importante de circo en América Latina."
-				cta={{
-					text: "Postúlate ahora",
-					href: "/convocatorias"
-				}}
+				description="Abierto el llamado para compañías y artistas independientes. Participá en la 5ta edición."
+				cta={{ text: "Postularse", href: "/convocatorias" }}
 			/>
-			<Card 
-				title="Espectáculos"
-				description="Más de 50 espectáculos de circo, acrobacias, teatro físico y performances innovadoras."
-				cta={{
-					text: "Ver programa",
-					href: "/espectaculos"
-				}}
+			<Card
+				accent="teal"
+				title="Programación"
+				description="Más de 9 espectáculos en 7 lugares emblemáticos de Montevideo."
+				cta={{ text: "Ver fechas", href: "/programacion" }}
 			/>
-			<Card 
+			<Card
+				accent="sun"
 				title="Talleres"
-				description="Aprende de maestros circenses internacionales. Talleres para todos los niveles."
-				cta={{
-					text: "Inscribirse",
-					href: "/talleres"
-				}}
+				description="Aprendé de maestros circenses internacionales. Talleres para todos los niveles."
+				cta={{ text: "Inscribirse", href: "/talleres" }}
 			/>
 		</div>
 	</Section>
 
-	<!-- Newsletter -->
-	<Section 
-		id="newsletter"
-		title="Mantente Actualizado"
-		subtitle="Newsletter"
-		description="Recibe las últimas noticias sobre FIC 2026"
+	<!-- Ediciones anteriores -->
+	<Section
+		id="ediciones"
+		subtitle="Nuestro Legado"
+		title="Ediciones anteriores"
+		description="Más de dos décadas celebrando el arte circense en Uruguay."
+		dark={true}
+		accent="violet"
 	>
-		<div class="max-w-2xl mx-auto">
-			<form class="flex flex-col sm:flex-row gap-4">
-				<input 
-					type="email" 
-					placeholder="Tu correo electrónico"
-					class="flex-1 px-6 py-3 rounded-lg bg-white/20 border border-[#D4A574]/50 focus:border-[#8B3A3A] focus:outline-none transition-colors text-white placeholder-zinc-300"
-					required
-				/>
-				<button 
-					type="submit"
-					class="px-8 py-3 bg-[#8B3A3A] text-white font-bold uppercase tracking-widest rounded-lg hover:bg-[#D4A574] hover:text-[#4A7C8C] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(139,58,58,0.5)]"
-				>
-					Suscribirse
-				</button>
-			</form>
-			<p class="text-center text-zinc-300 text-sm mt-4">
-				No compartimos tu email. Puedes desuscribirte en cualquier momento.
-			</p>
+		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+			<Card accent="sun" title="2022" description="4ta Edición · 15.000 asistentes" />
+			<Card accent="teal" title="2019" description="3ra Edición · 12.000 asistentes" />
+			<Card accent="flame" title="2016" description="2da Edición · 10.000 asistentes" />
+			<Card accent="magenta" title="2002" description="1ra Edición · El comienzo" />
 		</div>
 	</Section>
 
-	<!-- CTA Final -->
-	<Section 
-		id="cta"
-		title="¿Listo para el festival?"
-		subtitle="Únete a Nosotros"
-		dark={false}
-	>
-		<div class="flex flex-col sm:flex-row gap-6 justify-center">
-			<a 
-				href="/convocatorias"
-				class="px-8 py-4 bg-[#8B3A3A] text-white font-bold uppercase tracking-widest rounded-lg hover:bg-[#D4A574] hover:text-[#4A7C8C] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(139,58,58,0.5)] text-center"
-			>
-				Participa como Artista
-			</a>
-			<a 
-				href="/contacto"
-				class="px-8 py-4 border-2 border-[#8B3A3A] text-[#8B3A3A] font-bold uppercase tracking-widest rounded-lg hover:bg-[#8B3A3A] hover:text-white transition-all duration-300 text-center"
-			>
-				Contacta con Nosotros
-			</a>
+	<!-- CTA final -->
+	<section class="relative bg-sun text-navy py-20 md:py-28 overflow-hidden border-y-4 border-navy">
+		<div class="absolute -bottom-10 -right-10 w-80 h-80 rounded-full overflow-hidden opacity-90">
+			<div class="h-1/2 bg-flame"></div>
+			<div class="h-1/2 bg-teal"></div>
 		</div>
-	</Section>
+		<div class="absolute -top-10 -left-10 w-56 h-56 rounded-full overflow-hidden opacity-90">
+			<div class="h-1/2 bg-magenta"></div>
+			<div class="h-1/2 bg-violet"></div>
+		</div>
+		<div class="relative max-w-4xl mx-auto px-6 text-center">
+			<h2 class="font-display text-5xl md:text-7xl lg:text-8xl leading-[0.85] uppercase tracking-tighter mb-8">
+				¿Listo para<br/>el festival?
+			</h2>
+			<div class="flex flex-col sm:flex-row gap-4 justify-center">
+				<a href="/programacion" class="bg-navy text-cream px-8 py-4 rounded-full font-black uppercase tracking-widest text-sm hover:bg-flame transition-colors shadow-[6px_6px_0_0_#0E1B3D] hover:translate-x-1 hover:translate-y-1 hover:shadow-[3px_3px_0_0_#0E1B3D]">
+					Ver programación →
+				</a>
+				<a href="/contacto" class="border-4 border-navy px-8 py-4 rounded-full font-black uppercase tracking-widest text-sm hover:bg-navy hover:text-cream transition-colors">
+					Contactanos
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<HalfCircleStrip rows={1} cols={20} />
 </Layout>

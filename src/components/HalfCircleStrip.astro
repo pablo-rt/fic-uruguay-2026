@@ -1,0 +1,65 @@
+---
+interface Props {
+    rows?: number;
+    cols?: number;
+    animated?: boolean;
+}
+
+const { rows = 1, cols = 12, animated = false } = Astro.props;
+
+const palette = [
+    ['#F4C430', '#3DBCBC'],
+    ['#E85A2C', '#C589B7'],
+    ['#3DBCBC', '#F4C430'],
+    ['#C589B7', '#E85A2C'],
+    ['#F4C430', '#8E5BA8'],
+    ['#3DBCBC', '#B83A3A'],
+    ['#E85A2C', '#F4C430'],
+    ['#8E5BA8', '#3DBCBC'],
+    ['#C589B7', '#F4C430'],
+    ['#F4C430', '#E85A2C'],
+    ['#3DBCBC', '#C589B7'],
+    ['#B83A3A', '#F4C430'],
+];
+
+function tilesFor(rowIdx: number) {
+    return Array.from({ length: cols }, (_, c) => {
+        const idx = (rowIdx * cols + c) % palette.length;
+        return palette[idx];
+    });
+}
+---
+
+<div class="w-full overflow-hidden">
+    {Array.from({ length: rows }).map((_, r) => (
+        <div class="grid" style={`grid-template-columns: repeat(${cols}, 1fr); gap: 0;`}>
+            {tilesFor(r).map(([top, bottom], i) => (
+                <div
+                    class={`half-tile ${animated ? 'transition-transform duration-700' : ''}`}
+                    style={`--top:${top}; --bottom:${bottom}; ${animated ? `animation-delay:${i * 80}ms;` : ''}`}
+                >
+                    <span style={`background:${top}`}></span>
+                    <span style={`background:${bottom}`}></span>
+                </div>
+            ))}
+        </div>
+    ))}
+</div>
+
+<style>
+    .half-tile {
+        aspect-ratio: 1 / 1;
+        position: relative;
+        overflow: hidden;
+        border-radius: 9999px;
+    }
+    .half-tile span {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        display: block;
+    }
+    .half-tile span:first-child { top: 0; }
+    .half-tile span:last-child { bottom: 0; }
+</style>

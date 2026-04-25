@@ -2,88 +2,65 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Section from '../components/Section.astro';
-import Card from '../components/Card.astro';
+
+const faqs = [
+	{ q: "¿Cuál es la duración máxima del acto?", a: "La duración máxima es de 30 minutos. Los actos más cortos también son bienvenidos.", color: "#F4C430" },
+	{ q: "¿Hay costo de inscripción?", a: "No, la inscripción es completamente gratuita. Solo necesitas completar el formulario en línea.", color: "#3DBCBC" },
+	{ q: "¿Qué formato debe tener el video?", a: "Aceptamos MP4, MOV, AVI y WebM. El video debe tener una duración mínima de 3 minutos y máxima de 10 minutos.", color: "#E85A2C" },
+	{ q: "¿Puedo participar si soy internacional?", a: "¡Por supuesto! Aceptamos artistas de todo el mundo. Ofrecemos apoyo con visas y alojamiento.", color: "#C589B7" },
+	{ q: "¿Hay apoyo económico para artistas?", a: "Sí, ofrecemos becas parciales para artistas de países en desarrollo. Consulta los términos en el formulario.", color: "#8E5BA8" },
+];
 ---
 
-<Layout title="Convocatorias | FIC Uruguay 2026">
-	<!-- Hero Section -->
-	<Hero 
+<Layout title="Convocatorias | FIC 2026">
+	<Hero
 		title="Convocatorias"
-		subtitle="Participa en FIC 2026"
-		description="¿Eres artista o compañía de circo? ¡Queremos verte en el escenario! Abre el llamado para la 5ta edición del Festival Internacional de Circo."
-		backgroundImage="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&q=80"
+		subtitle="Postulate · Participá"
+		description="¿Sos artista o compañía de circo? Queremos verte en el escenario. Abre el llamado para la 5ta edición del Festival Internacional de Circo."
+		cta={{ text: "Postular ahora", href: "#postular" }}
 	/>
 
-	<!-- Preguntas Frecuentes -->
-	<Section 
+	<Section
 		id="faq"
-		title="Preguntas Frecuentes"
 		subtitle="FAQ"
-		description="Respuestas a las preguntas más comunes"
+		title="Preguntas Frecuentes"
+		description="Las dudas más comunes sobre el llamado."
+		accent="magenta"
 	>
-		<div class="max-w-3xl mx-auto space-y-6">
-			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
-				<summary class="flex justify-between items-center font-bold text-lg">
-					¿Cuál es la duración máxima del acto?
-					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
-				</summary>
-				<p class="text-zinc-400 mt-4">La duración máxima es de 30 minutos. Los actos más cortos también son bienvenidos.</p>
-			</details>
-
-			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
-				<summary class="flex justify-between items-center font-bold text-lg">
-					¿Hay costo de inscripción?
-					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
-				</summary>
-				<p class="text-zinc-400 mt-4">No, la inscripción es completamente gratuita. Solo necesitas completar el formulario en línea.</p>
-			</details>
-
-			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
-				<summary class="flex justify-between items-center font-bold text-lg">
-					¿Qué formato debe tener el video?
-					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
-				</summary>
-				<p class="text-zinc-400 mt-4">Aceptamos MP4, MOV, AVI y WebM. El video debe tener una duración mínima de 3 minutos y máxima de 10 minutos.</p>
-			</details>
-
-			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
-				<summary class="flex justify-between items-center font-bold text-lg">
-					¿Puedo participar si soy internacional?
-					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
-				</summary>
-				<p class="text-zinc-400 mt-4">¡Por supuesto! Aceptamos artistas de todo el mundo. Ofrecemos apoyo con visas y alojamiento.</p>
-			</details>
-
-			<details class="bg-zinc-900/50 border border-zinc-800 p-6 rounded-lg group cursor-pointer">
-				<summary class="flex justify-between items-center font-bold text-lg">
-					¿Hay apoyo económico para artistas?
-					<span class="text-[#8B3A3A] group-open:rotate-180 transition-transform">▼</span>
-				</summary>
-				<p class="text-zinc-400 mt-4">Sí, ofrecemos becas parciales para artistas de países en desarrollo. Consulta los términos en el formulario.</p>
-			</details>
+		<div class="max-w-3xl mx-auto space-y-4">
+			{faqs.map(({ q, a, color }) => (
+				<details class="group bg-navy-soft border-2 rounded-3xl overflow-hidden transition-all" style={`border-color:${color}40`}>
+					<summary class="flex justify-between items-center gap-4 p-6 cursor-pointer hover:bg-navy/50 transition-colors">
+						<span class="font-display text-lg md:text-xl uppercase text-cream leading-tight">{q}</span>
+						<span class="shrink-0 w-8 h-8 rounded-full overflow-hidden ring-2 ring-cream/20 group-open:rotate-180 transition-transform duration-300">
+							<span class="block h-1/2 w-full" style={`background:${color}`}></span>
+							<span class="block h-1/2 w-full bg-cream/20"></span>
+						</span>
+					</summary>
+					<p class="text-cream/70 px-6 pb-6 leading-relaxed">{a}</p>
+				</details>
+			))}
 		</div>
 	</Section>
 
-	<!-- CTA -->
-	<Section 
-		id="cta"
-		title="¿Listo para Postularte?"
-		subtitle="Únete a FIC 2026"
-		dark={true}
-	>
-		<div class="flex flex-col sm:flex-row gap-6 justify-center">
-			<a 
-				href="#"
-				class="px-8 py-4 bg-[#8B3A3A] text-white font-bold uppercase tracking-widest rounded-lg hover:bg-[#6B2A2A] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(139,58,58,0.5)] text-center"
-			>
-				Enviar Solicitud
-			</a>
-			<a 
-				href="/contacto"
-				class="px-8 py-4 border-2 border-[#8B3A3A] text-[#8B3A3A] font-bold uppercase tracking-widest rounded-lg hover:bg-[#8B3A3A] hover:text-white transition-all duration-300 text-center"
-			>
-				Más Información
-			</a>
+	<section id="postular" class="relative bg-flame text-navy py-20 md:py-28 overflow-hidden border-y-4 border-navy">
+		<div class="absolute -bottom-16 -right-16 w-96 h-96 rounded-full overflow-hidden opacity-90">
+			<div class="h-1/2 bg-sun"></div>
+			<div class="h-1/2 bg-teal"></div>
 		</div>
-	</Section>
+		<div class="relative max-w-4xl mx-auto px-6 text-center">
+			<p class="font-bold text-xs uppercase tracking-widest mb-4">Convocatoria abierta</p>
+			<h2 class="font-display text-5xl md:text-7xl uppercase tracking-tighter mb-8 leading-[0.85]">
+				¿Listo para<br/>postularte?
+			</h2>
+			<div class="flex flex-col sm:flex-row gap-4 justify-center">
+				<a href="#" class="bg-navy text-cream px-8 py-4 rounded-full font-black uppercase tracking-widest text-sm hover:bg-cream hover:text-navy transition-colors shadow-[6px_6px_0_0_#0E1B3D] hover:translate-x-1 hover:translate-y-1 hover:shadow-[3px_3px_0_0_#0E1B3D]">
+					Enviar solicitud →
+				</a>
+				<a href="/contacto" class="border-4 border-navy px-8 py-4 rounded-full font-black uppercase tracking-widest text-sm hover:bg-navy hover:text-cream transition-colors">
+					Más información
+				</a>
+			</div>
+		</div>
+	</section>
 </Layout>

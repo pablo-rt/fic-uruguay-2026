@@ -1,65 +1,99 @@
 ---
-// src/components/Hero.astro
+import HalfCircleStrip from './HalfCircleStrip.astro';
+import AcrobatMark from './AcrobatMark.astro';
+
 interface Props {
     title: string;
     subtitle?: string;
     description?: string;
-    cta?: {
-        text: string;
-        href: string;
-    };
+    cta?: { text: string; href: string; };
     backgroundImage?: string;
-    backgroundGradient?: boolean;
+    showAcrobat?: boolean;
 }
 
-const { 
-    title, 
-    subtitle, 
-    description, 
+const {
+    title,
+    subtitle,
+    description,
     cta,
-    backgroundImage = "https://images.unsplash.com/photo-1502635385003-ee1e6a1a742d?auto=format&fit=crop&q=80",
-    backgroundGradient = true
+    showAcrobat = true,
 } = Astro.props;
 ---
 
-<section class="relative min-h-[500px] md:min-h-[600px] lg:min-h-[700px] flex items-center justify-center overflow-hidden py-12 md:py-16">
-    <!-- Background -->
-    <div class="absolute inset-0 z-0">
-        {backgroundGradient && (
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#0A0A0A] z-10"></div>
-        )}
-        <img 
-            src={backgroundImage}
-            class="w-full h-full object-cover opacity-30 scale-105"
-            alt="Hero background"
-        />
+<section class="relative bg-navy brushstroke overflow-hidden border-b-4 border-sun">
+
+    <!-- Decoración: columna de semicírculos a la derecha -->
+    <div class="absolute right-0 top-0 bottom-0 w-1/4 md:w-1/5 hidden sm:block opacity-90 pointer-events-none">
+        <div class="grid grid-cols-2 h-full">
+            <div class="flex flex-col">
+                <div class="flex-1" style="background:#F4C430"></div>
+                <div class="flex-1" style="background:#3DBCBC"></div>
+                <div class="flex-1" style="background:#F4C430"></div>
+                <div class="flex-1" style="background:#E85A2C"></div>
+                <div class="flex-1" style="background:#8E5BA8"></div>
+            </div>
+            <div class="flex flex-col">
+                <div class="flex-1" style="background:#3DBCBC"></div>
+                <div class="flex-1" style="background:#C589B7"></div>
+                <div class="flex-1" style="background:#E85A2C"></div>
+                <div class="flex-1" style="background:#F4C430"></div>
+                <div class="flex-1" style="background:#3DBCBC"></div>
+            </div>
+        </div>
+
+        <!-- Círculos superpuestos para crear el efecto bicolor -->
+        <div class="absolute inset-0 flex flex-col">
+            {Array.from({ length: 5 }).map((_, i) => (
+                <div class="flex-1 flex items-center justify-center">
+                    <div class="w-[80%] aspect-square rounded-full overflow-hidden">
+                        <div class="h-1/2 w-full" style={`background: ${['#F4C430','#3DBCBC','#E85A2C','#C589B7','#8E5BA8'][i]}`}></div>
+                        <div class="h-1/2 w-full" style={`background: ${['#3DBCBC','#F4C430','#C589B7','#E85A2C','#F4C430'][i]}`}></div>
+                    </div>
+                </div>
+            ))}
+        </div>
     </div>
 
-    <!-- Content -->
-    <div class="relative z-20 text-center px-4 max-w-4xl">
-        {subtitle && (
-            <p class="text-xs md:text-sm tracking-[0.3em] uppercase opacity-70 mb-3 md:mb-4 font-light text-[#8B3A3A]">
-                {subtitle}
-            </p>
-        )}
-        
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-black uppercase leading-[1.1] tracking-tighter mb-4 md:mb-6">
-            {title}
-        </h1>
-        
-        {description && (
-            <p class="text-base md:text-lg tracking-wide opacity-80 mb-6 md:mb-8 font-light">
-                {description}
-            </p>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-24 md:py-32 lg:py-40 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+
+        <!-- Acróbata -->
+        {showAcrobat && (
+            <div class="md:col-span-2 hidden md:flex justify-center">
+                <AcrobatMark class="w-32 h-32 text-cream wiggle" />
+            </div>
         )}
 
-        {cta && (
-            <a 
-                href={cta.href}
-                class="inline-block bg-[#8B3A3A] text-white px-6 md:px-8 py-2.5 md:py-3 rounded-lg font-bold uppercase tracking-widest text-xs md:text-sm hover:bg-[#D4A574] hover:text-[#4A7C8C] transition-all duration-300 shadow-lg hover:shadow-[0_0_30px_rgba(139,58,58,0.5)]"
-            >
-                {cta.text}
-            </a>
-        )}
+        <div class={showAcrobat ? "md:col-span-7" : "md:col-span-9"}>
+            {subtitle && (
+                <p class="rise rise-1 inline-block text-xs md:text-sm tracking-[0.4em] uppercase mb-6 px-3 py-1 border-2 border-sun text-sun font-bold">
+                    {subtitle}
+                </p>
+            )}
+
+            <h1 class="rise rise-2 font-display text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] leading-[0.85] text-cream uppercase tracking-tighter mb-6 md:mb-8">
+                {title}
+            </h1>
+
+            {description && (
+                <p class="rise rise-3 text-base md:text-lg text-cream/80 max-w-xl mb-8 leading-relaxed">
+                    {description}
+                </p>
+            )}
+
+            {cta && (
+                <a
+                    href={cta.href}
+                    class="rise rise-4 inline-flex items-center gap-3 bg-sun text-navy px-8 py-4 rounded-full font-black uppercase tracking-widest text-sm hover:bg-flame hover:text-cream transition-all duration-300 shadow-[6px_6px_0_0_#3DBCBC] hover:shadow-[3px_3px_0_0_#3DBCBC] hover:translate-x-0.5 hover:translate-y-0.5"
+                >
+                    {cta.text}
+                    <span class="text-lg">→</span>
+                </a>
+            )}
+        </div>
+    </div>
+
+    <!-- Strip de semicírculos al pie -->
+    <div class="relative z-10">
+        <HalfCircleStrip rows={1} cols={20} />
     </div>
 </section>

@@ -1,40 +1,76 @@
 ---
-// src/components/Navbar.astro
+const links = [
+    { href: '/convocatorias', label: 'Convocatorias', color: '#F4C430' },
+    { href: '/espectaculos', label: 'Espectáculos', color: '#3DBCBC' },
+    { href: '/talleres', label: 'Talleres', color: '#E85A2C' },
+    { href: '/programacion', label: 'Programación', color: '#C589B7' },
+];
 ---
 
-<nav class="fixed top-0 left-0 w-full z-50 bg-[#4A7C8C]/95 backdrop-blur-md border-b border-[#8B3A3A]">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-        <!-- Logo -->
-        <a href="/" class="text-2xl font-black tracking-tighter hover:text-[#D4A574] transition-colors duration-300">
-            FIC<span class="text-[#8B3A3A]">.</span>
+<nav class="fixed top-0 left-0 w-full z-50 bg-navy/85 backdrop-blur-lg border-b-2 border-sun/20">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center gap-8">
+
+        <!-- Logo: fic + dot bicolor -->
+        <a href="/" class="flex items-baseline gap-1 group" aria-label="Inicio">
+            <span class="font-display text-3xl md:text-4xl text-cream tracking-tighter leading-none transition-transform group-hover:-translate-y-0.5">
+                fic
+            </span>
+            <span class="relative inline-block w-3 h-3 rounded-full overflow-hidden">
+                <span class="absolute top-0 left-0 w-full h-1/2 bg-sun transition-colors group-hover:bg-flame"></span>
+                <span class="absolute bottom-0 left-0 w-full h-1/2 bg-teal transition-colors group-hover:bg-magenta"></span>
+            </span>
+            <span class="font-display text-sm md:text-base text-sun tracking-tight">2026</span>
         </a>
 
-        <!-- Desktop Navigation -->
-        <div class="hidden md:flex gap-12 text-sm uppercase tracking-[0.15em] font-semibold">
-            <a href="/convocatorias" class="text-zinc-300 hover:text-[#D4A574] transition-colors duration-300 relative group">
-                Convocatorias
-                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D4A574] group-hover:w-full transition-all duration-300"></span>
-            </a>
-            <a href="/espectaculos" class="text-zinc-300 hover:text-[#D4A574] transition-colors duration-300 relative group">
-                Espectáculos
-                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D4A574] group-hover:w-full transition-all duration-300"></span>
-            </a>
-            <a href="/talleres" class="text-zinc-300 hover:text-[#D4A574] transition-colors duration-300 relative group">
-                Talleres
-                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D4A574] group-hover:w-full transition-all duration-300"></span>
-            </a>
-            <a href="/programacion" class="text-zinc-300 hover:text-[#D4A574] transition-colors duration-300 relative group">
-                Programación
-                <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D4A574] group-hover:w-full transition-all duration-300"></span>
-            </a>
+        <!-- Desktop links -->
+        <div class="hidden md:flex gap-8 text-xs uppercase tracking-[0.2em] font-semibold">
+            {links.map(({ href, label, color }) => (
+                <a
+                    href={href}
+                    class="relative text-cream/80 hover:text-cream transition-colors group"
+                    style={`--accent:${color}`}
+                >
+                    {label}
+                    <span class="absolute -bottom-1 left-0 right-0 h-0.5 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" style={`background:${color}`}></span>
+                </a>
+            ))}
         </div>
 
-        <!-- CTA Button -->
-        <a href="/contacto" class="bg-[#8B3A3A] text-white px-6 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-[#D4A574] hover:text-[#4A7C8C] transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(139,58,58,0.4)]">
+        <!-- CTA -->
+        <a
+            href="/contacto"
+            class="hidden md:inline-flex items-center gap-2 bg-sun text-navy px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-widest hover:bg-flame hover:text-cream transition-all duration-300 shadow-[4px_4px_0_0_#0E1B3D] hover:shadow-[2px_2px_0_0_#0E1B3D] hover:translate-x-0.5 hover:translate-y-0.5"
+        >
             Contacto
         </a>
+
+        <!-- Mobile menu button -->
+        <button id="mobile-toggle" class="md:hidden text-cream" aria-label="Menú">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="4" y1="7" x2="20" y2="7" />
+                <line x1="4" y1="12" x2="20" y2="12" />
+                <line x1="4" y1="17" x2="20" y2="17" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-navy-deep border-t-2 border-sun/20">
+        <div class="flex flex-col px-6 py-4 gap-4 text-sm uppercase tracking-widest font-semibold">
+            {links.map(({ href, label, color }) => (
+                <a href={href} class="text-cream/80 hover:text-cream py-2 border-l-4 pl-4" style={`border-color:${color}`}>
+                    {label}
+                </a>
+            ))}
+            <a href="/contacto" class="bg-sun text-navy px-5 py-3 rounded-full font-black text-center mt-2">Contacto</a>
+        </div>
     </div>
 </nav>
 
-<!-- Spacer para que el contenido no se superponga con el navbar fijo -->
-<div class="h-16"></div>
+<div class="h-20"></div>
+
+<script is:inline>
+    const btn = document.getElementById('mobile-toggle');
+    const menu = document.getElementById('mobile-menu');
+    btn?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

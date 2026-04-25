@@ -1,58 +1,82 @@
 ---
-// src/components/Card.astro
 interface Props {
     title: string;
     description: string;
     icon?: string;
     image?: string;
-    cta?: {
-        text: string;
-        href: string;
-    };
+    cta?: { text: string; href: string; };
     featured?: boolean;
-    accentColor?: string;
+    accent?: 'sun' | 'teal' | 'flame' | 'magenta' | 'violet' | 'crimson';
 }
 
-const { 
-    title, 
-    description, 
+const {
+    title,
+    description,
     icon,
     image,
     cta,
     featured = false,
-    accentColor = "#8B3A3A"
+    accent = 'sun',
 } = Astro.props;
+
+const accentMap = {
+    sun: '#F4C430',
+    teal: '#3DBCBC',
+    flame: '#E85A2C',
+    magenta: '#C589B7',
+    violet: '#8E5BA8',
+    crimson: '#B83A3A',
+};
+const a = accentMap[accent];
 ---
 
-<div class={`rounded-2xl overflow-hidden transition-all duration-300 ${featured ? 'md:col-span-2 bg-gradient-to-br from-[#8B3A3A] to-[#D4A574] text-white' : 'bg-zinc-900/50 border border-zinc-800 hover:border-[#8B3A3A]/50'} p-8 group cursor-pointer hover:shadow-lg hover:shadow-[#8B3A3A]/20`}>
-    {image && !featured && (
-        <div class="mb-6 h-48 rounded-lg overflow-hidden">
-            <img src={image} alt={title} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
-        </div>
-    )}
+<div
+    class={`relative group rounded-3xl overflow-hidden border-2 transition-all duration-300 ${featured ? 'col-span-1 md:col-span-2' : ''}`}
+    style={`border-color:${a}; background:#1A2954;`}
+>
+    <!-- Cintita bicolor decorativa arriba -->
+    <div class="h-2 flex">
+        <div class="flex-1" style={`background:${a}`}></div>
+        <div class="flex-1 bg-teal"></div>
+        <div class="flex-1 bg-flame"></div>
+        <div class="flex-1 bg-magenta"></div>
+    </div>
 
-    {icon && (
-        <div class="text-4xl mb-4">{icon}</div>
-    )}
+    <div class="p-8">
+        {image && (
+            <div class="mb-6 rounded-2xl overflow-hidden h-48 relative">
+                <img src={image} alt={title} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                <div class="absolute top-3 right-3 w-10 h-10 rounded-full overflow-hidden">
+                    <div class="h-1/2" style={`background:${a}`}></div>
+                    <div class="h-1/2 bg-teal"></div>
+                </div>
+            </div>
+        )}
 
-    <h3 class={`text-2xl md:text-3xl font-bold mb-3 group-hover:translate-x-2 transition-transform ${featured ? 'text-white' : 'text-white'}`}>
-        {title}
-    </h3>
+        {icon && (
+            <div class="mb-4 w-14 h-14 rounded-full overflow-hidden ring-4 ring-cream/10">
+                <div class="h-1/2 flex items-center justify-center text-xl" style={`background:${a}; color:#0E1B3D`}>{icon}</div>
+                <div class="h-1/2 bg-navy-deep"></div>
+            </div>
+        )}
 
-    <p class={`text-base leading-relaxed mb-6 ${featured ? 'text-white/90' : 'text-zinc-400'}`}>
-        {description}
-    </p>
+        <h3 class="font-display text-2xl md:text-3xl uppercase text-cream tracking-tight leading-[0.95] mb-3 group-hover:translate-x-1 transition-transform">
+            {title}
+        </h3>
 
-    {cta && (
-        <a 
-            href={cta.href}
-            class={`inline-block font-bold uppercase tracking-widest text-sm transition-all duration-300 ${
-                featured 
-                    ? 'text-white hover:translate-x-1' 
-                    : 'text-[#D4A574] hover:text-white'
-            }`}
-        >
-            {cta.text} →
-        </a>
-    )}
+        <p class="text-cream/70 text-sm md:text-base leading-relaxed mb-6">
+            {description}
+        </p>
+
+        {cta && (
+            <a
+                href={cta.href}
+                class="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest pb-1 border-b-2 transition-all duration-300 hover:gap-3"
+                style={`color:${a}; border-color:${a}`}
+            >
+                {cta.text}
+                <span>→</span>
+            </a>
+        )}
+    </div>
 </div>
